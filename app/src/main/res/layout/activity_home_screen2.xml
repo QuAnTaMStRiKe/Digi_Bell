@@ -28,16 +28,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginBottom="45dp"
-        android:background="@drawable/ic_home"></LinearLayout>
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="45dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_home" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="307dp"
-        android:layout_marginBottom="49dp"
-        android:background="@drawable/ic_profile"></LinearLayout>
+        android:layout_marginStart="270dp"
+        android:layout_marginBottom="45dp">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_profile" />
+    </LinearLayout>
 </RelativeLayout>
