@@ -17,18 +17,31 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageButton
-            android:id="@+id/hmbtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_logohomer" />
-    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/shape_layout"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circle"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/myCardView2"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:cardCornerRadius="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            >
+            <ImageView
+                android:id="@+id/hmbtn2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@mipmap/bell_foreground"
+                />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

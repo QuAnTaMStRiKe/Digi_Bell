@@ -16,10 +16,13 @@ class HomeScreen2 : AppCompatActivity() {
             val i = Intent(this, HomeScreen1::class.java)
             startActivity(i)
         }
+
 //        Handler().postDelayed(Runnable {
 //            val inte = Intent(this, HomeScreen3::class.java)
 //            startActivity(inte)
 //            finish()
 //        }, TIME_OUT.toLong())
+
+
     }
 }

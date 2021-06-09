@@ -21,5 +21,6 @@ class HomeScreen3 : AppCompatActivity() {
 //            startActivity(inte)
 //            finish()
 //        }, TIME_OUT.toLong())
+
     }
 }
