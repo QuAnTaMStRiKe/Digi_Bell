@@ -86,6 +86,19 @@
         android:layout_marginBottom="186dp"
         android:gravity="center"
         android:textAlignment="center" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="369dp"
+        android:layout_marginBottom="690dp"
+        android:background="@drawable/ic_back_button"
+        android:gravity="left" />
 
 
 </RelativeLayout>

@@ -25,7 +25,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:layout_marginBottom="416dp">
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/signupS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -44,7 +44,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:layout_marginStart="236dp"
     android:layout_marginBottom="414dp">
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

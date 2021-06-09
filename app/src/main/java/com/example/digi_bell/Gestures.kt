@@ -6,6 +6,6 @@ import android.os.Bundle
 class Gestures : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gestures)
+        setContentView(R.layout.activity_gesture_main)
     }
 }

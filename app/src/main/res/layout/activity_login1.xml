@@ -22,7 +22,7 @@
         android:layout_marginBottom="416dp">
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/signupl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
         android:layout_marginStart="236dp"
         android:layout_marginBottom="414dp">
         <Button
-            android:id="@+id/login"
+            android:id="@+id/loginl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
