@@ -1,11 +1,16 @@
 package com.example.digi_bell
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
+
 class UserProfile : AppCompatActivity() {
+    var auth: FirebaseAuth? = null
+    private val authx: AuthStateListener? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
@@ -22,7 +27,8 @@ class UserProfile : AppCompatActivity() {
             startActivity(ges)
         }
         logout.setOnClickListener {
-            val log = Intent(this, Login1::class.java)
+            FirebaseAuth.getInstance().signOut()
+            val log = Intent(this, Login::class.java)
             startActivity(log)
         }
         backUI.setOnClickListener {

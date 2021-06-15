@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -22,7 +25,7 @@
         android:layout_marginBottom="416dp">
 
         <Button
-            android:id="@+id/signupl"
+            android:id="@+id/signupS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,11 +44,11 @@
         android:layout_marginStart="236dp"
         android:layout_marginBottom="414dp">
         <Button
-            android:id="@+id/loginl"
+            android:id="@+id/loginSx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Log In"
+            android:text="LogIn"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
             android:textSize="25dp"/>
@@ -57,35 +60,77 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="256dp"
+        android:layout_marginStart="59dp"
         android:layout_marginBottom="408dp"
         android:background="@drawable/ic_bar"></LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="231dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="180dp"
         android:orientation="vertical">
+
         <EditText
-            android:id="@+id/userID"
-            android:layout_width="wrap_content"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:hint="Email Id / Number" />
+            android:hint="Enter name" />
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:hint="Enter Number" />
 
         <EditText
-            android:id="@+id/loginPass"
-            android:layout_width="wrap_content"
+            android:id="@+id/emailId"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/number"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="Email Id" />
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailId"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="Password" />
-    </LinearLayout>
+        <ToggleButton
+            android:id="@+id/showPass"
+            android:layout_below="@+id/emailId"
+            android:layout_alignEnd="@+id/password"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_eye"
+            />
+
+        <EditText
+            android:id="@+id/passwordCnfrm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Confirm Password" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -95,7 +140,7 @@
         android:layout_marginEnd="134dp"
         android:layout_marginBottom="65dp">
         <Button
-            android:id="@+id/loginCnfrm"
+            android:id="@+id/signupcnfrmx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -104,8 +149,12 @@
             android:layout_marginBottom="4dp"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
-            android:text="Login"
+            android:text="Sign Up"
             android:textSize="20dp"/>
 
     </LinearLayout>
+
+
+
+
 </RelativeLayout>
