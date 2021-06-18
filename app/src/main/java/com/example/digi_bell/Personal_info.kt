@@ -3,7 +3,6 @@ package com.example.digi_bell
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
@@ -20,13 +19,16 @@ import kotlinx.android.synthetic.main.name_update.*
 class Personal_info : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
+    private lateinit var dbRef2: DatabaseReference
     private var firebaseUserID: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
+        val senderId = "filg5JlG4IaNLmuVFyd6Qfq0f9s1"
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+        dbRef2 = FirebaseDatabase.getInstance().reference.child("Users").child(senderId)
         backPI.setOnClickListener {
             val i = Intent(this, UserProfile::class.java)
             startActivity(i)
@@ -35,7 +37,7 @@ class Personal_info : AppCompatActivity() {
         dbRef.child("Name").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val nameD = snapshot.getValue(String::class.java)
-                namePI.setText(nameD)
+                namePI.setText(nameD) 
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -60,6 +62,16 @@ class Personal_info : AppCompatActivity() {
                 emailPI.setText(emailD)
             }
 
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        dbRef2.child("Help").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+               val help = snapshot.getValue(String::class.java)
+                helpReceived.setText(help)
+            }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }

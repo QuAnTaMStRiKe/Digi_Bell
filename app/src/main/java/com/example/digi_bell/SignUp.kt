@@ -43,6 +43,12 @@ class SignUp : AppCompatActivity() {
                 password.setSelection(password.text.length)
             }
         }
+
+        loginSx.setOnClickListener {
+            val i = Intent(this, Login::class.java)
+            startActivity(i)
+        }
+
         signupcnfrmx.setOnClickListener {
             val email = emailId.text.toString()
             val pwd = password.text.toString()
@@ -72,6 +78,8 @@ class SignUp : AppCompatActivity() {
                         userHashMap["Number"] = number.text.toString()
                         userHashMap["Email Id"] = emailId.text.toString()
                         userHashMap["Password"] = password.text.toString()
+                        userHashMap["Contacts"]
+                        userHashMap["Help"]
                         dbRef.updateChildren(userHashMap).addOnCompleteListener { task ->
                         if (task.isSuccessful){
                             val i = Intent(this, HomeScreen1::class.java)
@@ -79,7 +87,6 @@ class SignUp : AppCompatActivity() {
                             startActivity(i)
                             finish()
                             Toast.makeText(this, "SignUp Successful", Toast.LENGTH_SHORT).show()
-
                         }
                         }
 
@@ -91,9 +98,6 @@ class SignUp : AppCompatActivity() {
                 Toast.makeText(this, "Error Occurred", Toast.LENGTH_SHORT).show()
             }
         }
-        loginSx.setOnClickListener {
-            val i = Intent(this, Login::class.java)
-            startActivity(i)
-        }
+
     }
 }

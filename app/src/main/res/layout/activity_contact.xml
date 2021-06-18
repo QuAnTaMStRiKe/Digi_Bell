@@ -86,25 +86,10 @@
             android:ems="10"
             android:inputType="phone"
             android:hint="Contact 3" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="151dp"
-        android:layout_marginBottom="70dp">
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Save"
-            android:textSize="25dp"
-            android:backgroundTint="@color/black"/>
 
     </LinearLayout>
+
+
     <ImageButton
         android:id="@+id/backCon"
         android:layout_width="wrap_content"
@@ -114,4 +99,18 @@
         android:layout_gravity="center_vertical"
         android:background="@drawable/ic_back_button"
         android:backgroundTint="@color/black" />
+
+    <Button
+        android:id="@+id/editCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="54dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/black"
+        android:text="Edit"
+        android:textSize="25dp" />
 </RelativeLayout>

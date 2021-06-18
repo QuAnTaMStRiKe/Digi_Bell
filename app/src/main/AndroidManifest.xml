@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.digi_bell">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digi_Bell">
-        <activity android:name=".Email_Edit"></activity>
-        <activity android:name=".Number_Edit" />
-        <activity android:name=".Name_Edit" />
+        <activity android:name=".Receiver" />
         <activity android:name=".Login" />
         <activity android:name=".SignUp" />
         <activity android:name=".Contact" />
