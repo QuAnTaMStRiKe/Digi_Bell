@@ -44,9 +44,11 @@ class SignUp : AppCompatActivity() {
             }
         }
 
+
         loginSx.setOnClickListener {
-            val i = Intent(this, Login::class.java)
-            startActivity(i)
+            val gotoLogin = Intent(this, Login::class.java)
+            startActivity(gotoLogin)
+
         }
 
         signupcnfrmx.setOnClickListener {
@@ -82,7 +84,7 @@ class SignUp : AppCompatActivity() {
                         userHashMap["Help"]
                         dbRef.updateChildren(userHashMap).addOnCompleteListener { task ->
                         if (task.isSuccessful){
-                            val i = Intent(this, HomeScreen1::class.java)
+                            val i = Intent(this, ScanReceive::class.java)
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(i)
                             finish()

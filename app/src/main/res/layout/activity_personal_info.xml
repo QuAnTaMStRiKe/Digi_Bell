@@ -145,15 +145,6 @@
     </RelativeLayout>
 
 
-    <EditText
-        android:id="@+id/helpReceived"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="117dp"
-        android:hint="helpxxx"
-        android:textAlignment="center"/>
 
     <ImageButton
         android:id="@+id/backPI"

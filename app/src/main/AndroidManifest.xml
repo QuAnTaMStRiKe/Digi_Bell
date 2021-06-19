@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digi_Bell">
+        <activity android:name=".Scanner"></activity>
+        <activity android:name=".Generator1" />
+        <activity android:name=".ScanReceive" />
         <activity android:name=".Receiver" />
         <activity android:name=".Login" />
         <activity android:name=".SignUp" />

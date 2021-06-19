@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:hint="Email Id / Number" />
+            android:inputType="textEmailAddress"
+            android:hint="Email Id" />
 
         <EditText
             android:id="@+id/passwordL"

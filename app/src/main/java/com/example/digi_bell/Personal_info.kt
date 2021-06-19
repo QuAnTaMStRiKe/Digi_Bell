@@ -3,6 +3,7 @@ package com.example.digi_bell
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
@@ -67,16 +68,7 @@ class Personal_info : AppCompatActivity() {
             }
 
         })
-        dbRef2.child("Help").addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-               val help = snapshot.getValue(String::class.java)
-                helpReceived.setText(help)
-            }
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
 
-        })
 
         nameEdit.setOnClickListener {
             showUpdateName(namePI)
@@ -89,9 +81,11 @@ class Personal_info : AppCompatActivity() {
         }
 
     }
+
     private fun showUpdateEmail(emailPI: EditText) {
         firebaseUserID = auth.currentUser!!.uid
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+        val user = Firebase.auth.currentUser
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Email")
         val inflater = LayoutInflater.from(this)
@@ -100,12 +94,18 @@ class Personal_info : AppCompatActivity() {
         editText.text = emailPI.editableText
         builder.setView(view)
         builder.setPositiveButton("Update"){ _, _ ->
-            val name = editText.text.toString().trim()
-            if(name.isEmpty()){
+            val name = editText.text.toString()
+            if(name == null){
                 editText.error = "Please enter a Email Id"
                 editText.requestFocus()
                 return@setPositiveButton
             }
+            user!!.updateEmail(name)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("TAG", "User email address updated.")
+                    }
+                }
             dbRef.child("Email Id").setValue(name)
             fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
             emailPI.text = name.toEditable()
@@ -129,8 +129,8 @@ class Personal_info : AppCompatActivity() {
         editText.text = numberPI.editableText
         builder.setView(view)
         builder.setPositiveButton("Update"){ _, _ ->
-            val name = editText.text.toString().trim()
-            if(name.isEmpty()){
+            val name = editText.text.toString()
+            if(name == null){
                 editText.error = "Please enter a number"
                 editText.requestFocus()
                 return@setPositiveButton
@@ -158,8 +158,8 @@ class Personal_info : AppCompatActivity() {
         editText.text = namePI.editableText
         builder.setView(view)
         builder.setPositiveButton("Update"){ _, _ ->
-            val name = editText.text.toString().trim()
-            if(name.isEmpty()){
+            val name = editText.text.toString()
+            if(name == null){
                 editText.error = "Please enter a name"
                 editText.requestFocus()
                 return@setPositiveButton
