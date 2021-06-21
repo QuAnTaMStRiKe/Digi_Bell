@@ -16,15 +16,13 @@ import kotlinx.android.synthetic.main.activity_scanner.*
 
 class Scanner : AppCompatActivity() {
 
-    private val sharedPrefFile = "kotlinsharedpreference"
+    private val sharedPrefFile = "SharedPref"
 
     lateinit var codescanner: CodeScanner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
 
-         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
-            Context.MODE_PRIVATE)
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
             PackageManager.PERMISSION_DENIED

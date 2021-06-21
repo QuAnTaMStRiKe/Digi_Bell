@@ -31,6 +31,11 @@ class Generator1 : AppCompatActivity() {
          etData.setText(firebaseUserID).toString()
      //   dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
 
+        backSR.setOnClickListener {
+            val sndScnRcv = Intent(this, ScanReceive::class.java)
+            startActivity(sndScnRcv)
+        }
+
         val writer = QRCodeWriter()
             try {
 

@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/editNam"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,6 +19,7 @@
 
     <EditText
         android:id="@+id/nameEN"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

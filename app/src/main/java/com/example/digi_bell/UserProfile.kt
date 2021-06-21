@@ -1,6 +1,8 @@
 package com.example.digi_bell
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -10,18 +12,20 @@ import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class UserProfile : AppCompatActivity() {
     var auth: FirebaseAuth? = null
-    private val authx: AuthStateListener? = null
+    private val sharedPrefFile = "SharedPref"
+    private var sendid: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
+
         pinfo.setOnClickListener {
             val i = Intent(this, Personal_info::class.java)
             startActivity(i)
         }
-        cont.setOnClickListener {
-            val j = Intent(this, Contact::class.java)
-            startActivity(j)
-        }
+
         gesture.setOnClickListener {
             val ges = Intent(this, GestureMain::class.java)
             startActivity(ges)
@@ -32,12 +36,24 @@ class UserProfile : AppCompatActivity() {
             startActivity(log)
         }
         backUI.setOnClickListener {
+            sendid = sharedPreferences.getString("Snd"," ")
+            if (sendid == "Sender"){
             val bak = Intent(this, HomeScreen1::class.java)
             startActivity(bak)
+            } else if(sendid == "Receiver"){
+                val bakRec = Intent(this, Receiver::class.java)
+                startActivity(bakRec)
+            }
         }
         hm2.setOnClickListener {
-            val bakhm = Intent(this, HomeScreen1::class.java)
-            startActivity(bakhm)
+            sendid = sharedPreferences.getString("Snd"," ")
+            if (sendid == "Sender"){
+                val bak = Intent(this, HomeScreen1::class.java)
+                startActivity(bak)
+            } else if(sendid == "Receiver"){
+                val bakRec = Intent(this, Receiver::class.java)
+                startActivity(bakRec)
+            }
         }
     }
 }

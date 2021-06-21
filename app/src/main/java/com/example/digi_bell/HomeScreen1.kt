@@ -62,6 +62,11 @@ class HomeScreen1 : AppCompatActivity() {
         firebaseUserID = auth.currentUser!!.uid
 
 
+        backGen.setOnClickListener {
+            val intentSr = Intent(this, Generator1::class.java)
+            startActivity(intentSr)
+        }
+
         hmbtn1.setOnClickListener {
            val help:String = "1234"
             Log.d("help", " help")

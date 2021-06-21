@@ -34,7 +34,7 @@
     </RelativeLayout>
 
     <ImageButton
-        android:id="@+id/backCon"
+        android:id="@+id/backGen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="17dp"
@@ -65,6 +65,8 @@
         android:text="Discovering Devices"
         android:textSize="30sp"
         android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
 
     <ListView
@@ -74,6 +76,7 @@
         app:layout_constraintBottom_toTopOf="@+id/shape_layout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discovering_devices"
+        android:fontFamily="sans-serif-condensed-medium"
         />
     <ListView
         android:id="@+id/select_device_name_list"
@@ -81,7 +84,9 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/shape_layout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discovering_devices" />
+        app:layout_constraintTop_toBottomOf="@+id/discovering_devices"
+        android:fontFamily="sans-serif-condensed-medium"
+        />
     <TextView
         android:id="@+id/paired_device"
         android:layout_width="match_parent"
@@ -91,6 +96,8 @@
         android:text="Paired Devices"
         android:textSize="30sp"
         android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
     <ListView
         android:id="@+id/paired_device_list"
@@ -99,6 +106,8 @@
         app:layout_constraintBottom_toTopOf="@+id/shape_layout"
         app:layout_constraintTop_toBottomOf="@+id/paired_device"
         app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
     <ListView
         android:id="@+id/paired_device_name_list"
@@ -107,6 +116,8 @@
         app:layout_constraintBottom_toTopOf="@+id/shape_layout"
         app:layout_constraintTop_toBottomOf="@+id/paired_device"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
 
 
@@ -123,6 +134,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/select_device_name_list"
         app:layout_constraintRight_toLeftOf="@+id/shape_layout"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
     <Button
         android:id="@+id/paired"
@@ -137,6 +150,8 @@
         app:layout_constraintLeft_toRightOf="@+id/shape_layout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="sans-serif-condensed-medium"
+
         />
 
     <LinearLayout

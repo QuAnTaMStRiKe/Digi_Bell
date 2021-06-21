@@ -7,6 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/ic_group_223logo_1"
+        android:gravity="center" />
+
+    <ImageButton
+        android:id="@+id/backSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/ic_back_button"
+        android:backgroundTint="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/ivQRCode"
         android:layout_width="200dp"
@@ -15,17 +38,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="107dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="308dp"
         android:layout_marginEnd="107dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etData"
-        android:layout_width="231dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -33,15 +57,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="106dp"
         android:layout_marginEnd="105dp"
-        android:layout_marginBottom="114dp"
-        android:hint="Enter Data" />
+        android:layout_marginBottom="88dp"
+        android:hint="Enter Data"
+        android:visibility="invisible"
+        android:clickable="false"/>
 
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="201dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="142dp"
         android:background="@color/purple_700" />
 
     <Button
@@ -50,7 +78,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp" />
+        android:layout_marginTop="650dp"
+        android:backgroundTint="@color/black"
+        android:text="Done"
+        android:fontFamily="sans-serif-condensed-medium"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="243dp"
+        android:text="Scan the QR code generated below in the other device as Receiver"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed-medium"
+
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

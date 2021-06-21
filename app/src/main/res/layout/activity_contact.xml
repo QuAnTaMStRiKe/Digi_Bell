@@ -30,16 +30,17 @@
             android:layout_centerInParent="true"
             android:text="Contacts"
             android:textSize="50dp"
-            android:layout_marginLeft="50dp" />
+            android:layout_marginLeft="50dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="49dp"
         android:layout_marginTop="400dp">
         <TextView
             android:id="@+id/textView2"
@@ -47,6 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Enter the Contact Numbers:"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-condensed-medium"
             android:textSize="25dp"/>
 
     </LinearLayout>
@@ -58,7 +61,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="97dp"
         android:layout_marginTop="450dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:fontFamily="sans-serif-condensed-medium"
+        >
 
         <EditText
             android:id="@+id/contact1"
@@ -67,7 +72,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="phone"
-            android:hint="Contact 1" />
+            android:hint="Contact 1"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
 
         <EditText
             android:id="@+id/contact2"
@@ -76,7 +83,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="phone"
-            android:hint="Contact 2" />
+            android:hint="Contact 2"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
 
         <EditText
             android:id="@+id/contact3"
@@ -85,6 +94,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="phone"
+            android:fontFamily="sans-serif-condensed-medium"
+
             android:hint="Contact 3" />
 
     </LinearLayout>
@@ -111,6 +122,8 @@
         android:layout_marginBottom="54dp"
         android:layout_weight="1"
         android:backgroundTint="@color/black"
+        android:fontFamily="sans-serif-condensed-medium"
+
         android:text="Edit"
         android:textSize="25dp" />
 </RelativeLayout>

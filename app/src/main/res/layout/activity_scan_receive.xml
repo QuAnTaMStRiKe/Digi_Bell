@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/logoSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/ic_group_223logo_1"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="246dp"
+        android:text="If you are the person who needs help please select Sender and if you are the helper please select receiver. \nYou can change the according to your use later in settings."
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/generate"
         android:layout_width="wrap_content"
@@ -16,7 +39,9 @@
         android:layout_marginStart="99dp"
         android:layout_marginEnd="101dp"
         android:layout_marginBottom="20dp"
-        android:text="Sender" />
+        android:text="Sender"
+        android:fontFamily="sans-serif-condensed-medium"
+        />
 
     <Button
         android:id="@+id/scanner"
@@ -27,6 +52,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="99dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="226dp"
-        android:text="Receiver" />
+        android:layout_marginBottom="204dp"
+        android:text="Receiver"
+        android:fontFamily="sans-serif-condensed-medium"
+        />
 </RelativeLayout>

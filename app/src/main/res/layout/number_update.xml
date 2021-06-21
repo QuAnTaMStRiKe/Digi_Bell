@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent">
 
+    <ImageButton
+        android:id="@+id/backUpNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/ic_back_button"
+        android:backgroundTint="@color/black" />
+
+    <LinearLayout
+        android:layout_width="178dp"
+        android:layout_height="240dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/ic_group_223logo_1" >
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/editNum"
@@ -11,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="311dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Enter the number below:"
         android:textSize="20dp" />
 
@@ -19,13 +38,44 @@
         android:id="@+id/numberEN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editNum"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="119dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="346dp"
         android:layout_marginEnd="163dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:hint="Number"
         android:inputType="number"
         android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/inUpdateVcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberEN"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/black"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Get Verification Code"/>
+
+    <EditText
+        android:id="@+id/codeNumUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inUpdateVcode"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Enter Code"
+        />
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="152dp"
+        android:text="Done" />
 
 
 </RelativeLayout>

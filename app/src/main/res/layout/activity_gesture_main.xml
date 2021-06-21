@@ -13,7 +13,7 @@
         android:layout_marginStart="106dp"
         android:layout_marginTop="59dp"
         android:background="@drawable/ic_group_223logo_1"
-        android:gravity="center"></RelativeLayout>
+        android:gravity="center" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,13 +31,14 @@
             android:text="Gestures"
             android:textColor="@color/black"
             android:textSize="24dp"
-            android:textStyle="bold" />
+            android:fontFamily="sans-serif-condensed-medium"
+            />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="349dp"
-        android:layout_height="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -51,11 +52,12 @@
         android:text="Pressing Volume Down Button 3 times make the registered contacts mobile phones vibrate."
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:fontFamily="sans-serif-condensed-medium"
         android:textSize="20dp" />
 
     <Switch
         android:id="@+id/gesOn"
-        android:layout_width="41dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

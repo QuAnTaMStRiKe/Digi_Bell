@@ -9,27 +9,31 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_personal_info.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.name_update.*
+import kotlinx.android.synthetic.main.number_update.*
+import java.util.concurrent.TimeUnit
 
 
 class Personal_info : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
-    private lateinit var dbRef2: DatabaseReference
+    private var currentPassword: String = ""
     private var firebaseUserID: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
-        val senderId = "filg5JlG4IaNLmuVFyd6Qfq0f9s1"
+
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
-        dbRef2 = FirebaseDatabase.getInstance().reference.child("Users").child(senderId)
+
         backPI.setOnClickListener {
             val i = Intent(this, UserProfile::class.java)
             startActivity(i)
@@ -69,19 +73,83 @@ class Personal_info : AppCompatActivity() {
 
         })
 
+        dbRef.child("Password").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val currentPasswrd = snapshot.getValue(String::class.java)
+                if (currentPasswrd != null) {
+                    currentPassword = currentPasswrd
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         nameEdit.setOnClickListener {
             showUpdateName(namePI)
         }
         numberEdit.setOnClickListener {
-            showUpdateNumber(numberPI)
+            val goToUpdateNum = Intent(this, NumberUpdate::class.java)
+            startActivity(goToUpdateNum)
+
         }
         emailEdit.setOnClickListener {
             showUpdateEmail(emailPI)
         }
+        chngPass.setOnClickListener {
+            showUpdatePassword()
+        }
 
     }
+private fun showUpdatePassword(){
+    firebaseUserID = auth.currentUser!!.uid
+    dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+    val user = FirebaseAuth.getInstance().currentUser
+    val builder = AlertDialog.Builder(this)
+    builder.setTitle("Update Password")
+    val inflater = LayoutInflater.from(this)
+    val view = inflater.inflate(R.layout.update_pass, null)
+    val currPass = view.findViewById<EditText>(R.id.currPass)
+    val newPass = view.findViewById<EditText>(R.id.newPass)
+    val newPassCnfrm = view.findViewById<EditText>(R.id.newPassCnfrm)
+    builder.setView(view)
+    builder.setPositiveButton("Update"){_,_ ->
+        Log.e("CurrPass","$currentPassword")
+      if (currPass.text.toString() == currentPassword){
+           if(newPass.text.toString() == newPassCnfrm.text.toString()){
+               val new = newPass.text.toString()
+               dbRef.child("Password").setValue(new)
 
+
+
+//              user!!.updatePassword(new)
+//                  .addOnCompleteListener { task ->
+//                      if (task.isSuccessful) {
+//                          Log.e("Password_Update", "User password updated.")
+//                      }
+//                      Toast.makeText(this, "User password updated.", Toast.LENGTH_LONG).show()
+//                  }
+          }else{
+              Log.e("Match","It doesn't match your  new password")
+              newPassCnfrm.error = "It doesn't match your  new password"
+               Toast.makeText(this, "New password confirmation error", Toast.LENGTH_LONG).show()
+               newPassCnfrm.requestFocus()
+          }
+        }else{
+            Log.e("Wrong","Your current password is wrong" )
+          currPass.error = "Your current password is wrong"
+          Toast.makeText(this, "Your current password is wrong", Toast.LENGTH_LONG).show()
+          currPass.requestFocus()
+        }
+    }
+    builder.setNegativeButton("No"){ _, _ ->
+
+    }
+    val alert = builder.create()
+    alert.show()
+}
     private fun showUpdateEmail(emailPI: EditText) {
         firebaseUserID = auth.currentUser!!.uid
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
@@ -91,54 +159,45 @@ class Personal_info : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.email_update, null)
         val editText = view.findViewById<EditText>(R.id.emailEN)
+        val editText2 = view.findViewById<EditText>(R.id.passEN)
+
         editText.text = emailPI.editableText
         builder.setView(view)
-        builder.setPositiveButton("Update"){ _, _ ->
+        builder.setPositiveButton("Update") { _, _ ->
             val name = editText.text.toString()
-            if(name == null){
+            val pass = editText2.text.toString()
+            if (name == null) {
                 editText.error = "Please enter a Email Id"
                 editText.requestFocus()
                 return@setPositiveButton
-            }
-            user!!.updateEmail(name)
-                .addOnCompleteListener { task ->
+            } else if (editText2.text.toString() == currentPassword){
+            val credential = EmailAuthProvider.getCredential(name, pass)
+            auth.currentUser!!.linkWithCredential(credential)
+                .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Log.d("TAG", "User email address updated.")
+                        Log.d("Success", "linkWithCredential:success")
+
+
+                    } else {
+                        Log.w("Fail", "linkWithCredential:failure", task.exception)
+                        Toast.makeText(
+                            baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
+
+//            user!!.updateEmail(name)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d("TAG", "User email address updated.")
+//                    }
+//                }
             dbRef.child("Email Id").setValue(name)
-            fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+            fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
             emailPI.text = name.toEditable()
             Toast.makeText(this, "Email Updated", Toast.LENGTH_SHORT).show()
         }
-        builder.setNegativeButton("No"){ _, _ ->
-
-        }
-        val alert = builder.create()
-        alert.show()
-    }
-
-    private fun showUpdateNumber(numberPI: EditText) {
-        firebaseUserID = auth.currentUser!!.uid
-        dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Update Number")
-        val inflater = LayoutInflater.from(this)
-        val view = inflater.inflate(R.layout.number_update, null)
-        val editText = view.findViewById<EditText>(R.id.numberEN)
-        editText.text = numberPI.editableText
-        builder.setView(view)
-        builder.setPositiveButton("Update"){ _, _ ->
-            val name = editText.text.toString()
-            if(name == null){
-                editText.error = "Please enter a number"
-                editText.requestFocus()
-                return@setPositiveButton
-            }
-            dbRef.child("Number").setValue(name)
-            fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
-            numberPI.text = name.toEditable()
-            Toast.makeText(this, "Number Updated", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No"){ _, _ ->
 
@@ -146,6 +205,36 @@ class Personal_info : AppCompatActivity() {
         val alert = builder.create()
         alert.show()
     }
+
+//    private fun showUpdateNumber(numberPI: EditText) {
+//        firebaseUserID = auth.currentUser!!.uid
+//        dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+//        val builder = AlertDialog.Builder(this)
+//        builder.setTitle("Update Number")
+//        val inflater = LayoutInflater.from(this)
+//        val view = inflater.inflate(R.layout.number_update, null)
+//        val editText = view.findViewById<EditText>(R.id.numberEN)
+//        editText.text = numberPI.editableText
+//        builder.setView(view)
+//        builder.setPositiveButton("Update"){ _, _ ->
+//            val name = editText.text.toString()
+//            if(name == null){
+//                editText.error = "Please enter a number"
+//                editText.requestFocus()
+//                return@setPositiveButton
+//            }
+//            dbRef.child("Number").setValue(name)
+//            fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+//            numberPI.text = name.toEditable()
+//            Toast.makeText(this, "Number Updated", Toast.LENGTH_SHORT).show()
+//        }
+//        builder.setNegativeButton("No"){ _, _ ->
+//
+//        }
+//        val alert = builder.create()
+//        alert.show()
+//    }
+
 
     private fun showUpdateName(namePI: EditText) {
         firebaseUserID = auth.currentUser!!.uid

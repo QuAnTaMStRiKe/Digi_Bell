@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/editNum"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,7 +20,7 @@
         android:id="@+id/upCon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
@@ -29,6 +30,7 @@
 
     <EditText
         android:id="@+id/upCon2"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -47,6 +49,7 @@
         android:layout_marginTop="218dp"
         android:hint="Contact-3"
         android:inputType="number"
+        android:fontFamily="sans-serif-condensed-medium"
         android:textSize="20dp" />
 
 

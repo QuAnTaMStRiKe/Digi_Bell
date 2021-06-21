@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-<RelativeLayout
-    android:layout_height="match_parent"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="178dp"
@@ -13,7 +10,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="14dp"
-        android:background="@drawable/ic_group_223logo_1"></LinearLayout>
+        android:background="@drawable/ic_group_223logo_1" >
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="150dp"
@@ -22,7 +21,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="39dp"
-        android:layout_marginBottom="416dp">
+        android:layout_marginBottom="416dp"
+        >
 
         <Button
             android:id="@+id/signupS"
@@ -32,7 +32,9 @@
             android:text="Sign Up"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
-            android:textSize="25dp"></Button>
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +53,8 @@
             android:text="LogIn"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-condensed-medium"/>
 
     </LinearLayout>
 
@@ -62,85 +65,116 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="59dp"
         android:layout_marginBottom="408dp"
-        android:background="@drawable/ic_bar"></LinearLayout>
+        android:background="@drawable/ic_bar" />
+
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="313dp"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_contentColor="#fcfdfd"
+        app:ccp_showNameCode="false"
+        android:visibility="invisible"
+        app:ccp_textSize="20dp" />
 
     <RelativeLayout
+    android:id="@+id/rlInfo2"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginEnd="75dp"
+    android:layout_marginBottom="220dp"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/nameInNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Enter name" />
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameInNum"
+        android:layout_weight="1"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Enter Number"
+        android:inputType="numberSigned"
+        android:maxLength="10" />
+
+    <EditText
+        android:id="@+id/passInNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/number"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Password"
+        android:inputType="textPassword"
+        />
+
+    <ToggleButton
+        android:id="@+id/showPassInNum"
+        android:layout_below="@+id/number"
+        android:layout_alignEnd="@+id/passInNum"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:background="@drawable/ic_eye" />
+
+    <EditText
+        android:id="@+id/passCnfrmInNum"
+        android:layout_below="@+id/passInNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Confirm Password" />
+
+</RelativeLayout>
+
+
+
+
+
+
+    <Button
+        android:id="@+id/getCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="153dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Get Verification Code" />
+
+    <EditText
+        android:id="@+id/signUpCode"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="180dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Enter name" />
-        <EditText
-            android:id="@+id/number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberSigned"
-            android:hint="Enter Number" />
-
-        <EditText
-            android:id="@+id/emailId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/number"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="Email Id" />
-
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emailId"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Password" />
-        <ToggleButton
-            android:id="@+id/showPass"
-            android:layout_below="@+id/emailId"
-            android:layout_alignEnd="@+id/password"
-            android:layout_width="35dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_eye"
-            />
-
-        <EditText
-            android:id="@+id/passwordCnfrm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/password"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Confirm Password" />
-
-    </RelativeLayout>
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="90dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Enter Code" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="134dp"
-        android:layout_marginBottom="65dp">
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="10dp">
         <Button
-            android:id="@+id/signupcnfrmx"
+            android:id="@+id/signupcnfrmNum"
+            android:fontFamily="sans-serif-condensed-medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -150,9 +184,19 @@
             android:layout_weight="1"
             android:backgroundTint="@color/black"
             android:text="Sign Up"
+
             android:textSize="20dp"/>
 
     </LinearLayout>
+
+
+
+
+
+
+
+
+
 
 
 
