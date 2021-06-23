@@ -176,10 +176,7 @@ class SignUp : AppCompatActivity() {
 
                 } else {
 
-                    var message = "Something is wrong, we will fix it soon..."
-                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        message = "Invalid code entered..."
-                    }
+                    val message = "Something is wrong, we will fix it soon..."
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }

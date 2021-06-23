@@ -33,7 +33,7 @@ class ScanReceive : AppCompatActivity() {
                editor.putString("Snd", rc)
                editor.apply()
                editor.commit()
-               val intentSc = Intent(this, Scanner::class.java)
+               val intentSc = Intent(this, Receiver::class.java)
                startActivity(intentSc)
            }
 

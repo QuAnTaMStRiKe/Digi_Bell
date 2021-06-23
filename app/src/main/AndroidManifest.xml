@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.digi_bell">
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -20,10 +16,8 @@
         <activity android:name=".Login" />
         <activity android:name=".NumberUpdate" />
         <activity android:name=".GestureMain" />
-        <activity android:name=".Scanner" />
         <activity android:name=".Generator1" />
         <activity android:name=".ScanReceive" />
-        <activity android:name=".MainActivity2" />
         <activity android:name=".Receiver" />
         <activity android:name=".SignUp" />
         <activity android:name=".Contact" />
