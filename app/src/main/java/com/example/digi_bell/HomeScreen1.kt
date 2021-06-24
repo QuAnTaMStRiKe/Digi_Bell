@@ -29,6 +29,15 @@ class HomeScreen1 : AppCompatActivity() {
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
 
+        goToqr.setOnClickListener {
+            val qr = Intent(this, Generator1::class.java)
+            startActivity(qr)
+        }
+
+        chngRcv.setOnClickListener {
+            val rcv = Intent(this, ScanReceive::class.java)
+            startActivity(rcv)
+        }
 
         backGen.setOnClickListener {
             val intentSr = Intent(this, Generator1::class.java)

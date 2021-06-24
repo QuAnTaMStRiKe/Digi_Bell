@@ -31,14 +31,17 @@ import kotlinx.android.synthetic.main.activity_receiver.*
 
 class Receiver : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var dbRef1: DatabaseReference
     private lateinit var dbRef2: DatabaseReference
+    private lateinit var dbRef3: DatabaseReference
     private var firebaseUserID: String = ""
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var runnable:Runnable
     private var handler: Handler = Handler()
     private var pause:Boolean = false
     lateinit var codescanner: CodeScanner
-    private var sendid: String? = ""
+    private var name: String? = ""
+    private var name2: String? = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +51,10 @@ class Receiver : AppCompatActivity() {
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
         val list = arrayListOf<String>()
+        val list2 = arrayListOf<String>()
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list)
-
+        val adapter2 = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list2)
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
             PackageManager.PERMISSION_DENIED
@@ -66,30 +70,46 @@ class Receiver : AppCompatActivity() {
         }
 
 
+        bcmSender.setOnClickListener {
+            val bcmS = Intent(this, ScanReceive::class.java)
+            startActivity(bcmS)
+        }
+
         addId.setOnClickListener {
+            name?.let { it1 -> list2.add(it1) }
             list.add(senderIDx.text.toString())
             lvSenderId.adapter = adapter
+            lvSenderName.adapter = adapter2
             adapter.notifyDataSetChanged()
+            adapter2.notifyDataSetChanged()
             senderIDx.text.clear()
             dataRef(list)
         }
 
 
-        lvSenderId.setOnItemClickListener { _, _, i, _ ->
-            Toast.makeText(this, "You Selected the item --> "+ list[i], Toast.LENGTH_SHORT).show()
+        lvSenderName.setOnItemClickListener { _, _, i, _ ->
+            Toast.makeText(this, "You Selected the name --> "+ list2[i], Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "You Selected the id --> "+ list[i], Toast.LENGTH_SHORT).show()
         }
         deleteId.setOnClickListener {
-            val position: SparseBooleanArray = lvSenderId.checkedItemPositions
-            val count = lvSenderId.count
+            val position: SparseBooleanArray = lvSenderName.checkedItemPositions
+            val count = lvSenderName.count
             var item = count - 1
-            while (item >= 0) {
-                if (position.get(item))
+            val position2: SparseBooleanArray = lvSenderName.checkedItemPositions
+            val count2 = lvSenderId.count
+            var item2 = count2 - 1
+            while (item >= 0 && item2 >= 0) {
+                if (position.get(item) && position2.get(item2))
                 {
-                    adapter.remove(list[item])
+                    adapter.remove(list[item2])
+                    adapter2.remove(list2[item])
                 }
                 item--
+                item2--
             }
             position.clear()
+            adapter2.notifyDataSetChanged()
+            position2.clear()
             adapter.notifyDataSetChanged()
         }
 
@@ -99,12 +119,12 @@ class Receiver : AppCompatActivity() {
                    mediaPlayer.seekTo(mediaPlayer.currentPosition)
                    mediaPlayer.start()
                    pause = false
-                   Toast.makeText(this,"media playing",Toast.LENGTH_SHORT).show()
+
                }else{
 
                    mediaPlayer = MediaPlayer.create(applicationContext,R.raw.testtt)
                    mediaPlayer.start()
-                   Toast.makeText(this,"media playing",Toast.LENGTH_SHORT).show()
+
 
                }
                initializeSeekBar()
@@ -115,9 +135,9 @@ class Receiver : AppCompatActivity() {
                }
            }
            else{
-               if(mediaPlayer.isPlaying || pause.equals(true)){
+               if(mediaPlayer.isPlaying || pause){
                    pause = false
-                   seek_bar.setProgress(0)
+                   seek_bar.progress = 0
                    mediaPlayer.stop()
                    mediaPlayer.reset()
                    mediaPlayer.release()
@@ -126,7 +146,7 @@ class Receiver : AppCompatActivity() {
 
                    tv_pass.text = ""
                    tv_due.text = ""
-                   Toast.makeText(this,"media stop",Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this,"Call was dismissed",Toast.LENGTH_SHORT).show()
                }
            }
        }
@@ -164,8 +184,9 @@ class Receiver : AppCompatActivity() {
 
     private fun dataRef(list: ArrayList<String>) {
 
-      list.forEachIndexed { index, s ->
+      list.forEachIndexed { index, _ ->
           dbRef2 = FirebaseDatabase.getInstance().reference.child("Users").child(list[index])
+          dbRef3 = FirebaseDatabase.getInstance().reference.child("Users").child(list[index])
           dbRef2.child("Help").addValueEventListener(object : ValueEventListener{
               override fun onDataChange(snapshot: DataSnapshot) {
                   val help = snapshot.getValue(String::class.java)
@@ -173,6 +194,18 @@ class Receiver : AppCompatActivity() {
                   val h = "1234"
                   if(helpReceived.text.toString() == h){
                       Log.e("ON", "${helpReceived.text} + $h")
+                      dbRef3.child("Name").addValueEventListener(object : ValueEventListener{
+                          override fun onDataChange(snapshot: DataSnapshot) {
+                              name2 = snapshot.getValue(String::class.java)
+                              Toast.makeText(this@Receiver," Call from $name2 incoming ",Toast.LENGTH_SHORT).show()
+                          }
+
+                          override fun onCancelled(error: DatabaseError) {
+                              TODO("Not yet implemented")
+                          }
+
+                      })
+
                       audioON.isVisible= true
                       audioON.isChecked = true
                   }
@@ -187,6 +220,7 @@ class Receiver : AppCompatActivity() {
 
           })
       }
+
     }
 
 
@@ -218,10 +252,19 @@ class Receiver : AppCompatActivity() {
         codescanner.decodeCallback = DecodeCallback {
             runOnUiThread {
 
-                Toast.makeText(this, "Scan Result: ${it.text}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Scan Completed click on Add to add in the list", Toast.LENGTH_SHORT).show()
                 senderIDx.setText(it.text)
-                sendid = senderIDx.text.toString()
+                dbRef1 = FirebaseDatabase.getInstance().reference.child("Users").child(senderIDx.text.toString())
+                dbRef1.child("Name").addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        name = snapshot.getValue(String::class.java)
+                    }
 
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
             }
         }
         codescanner.errorCallback = ErrorCallback {

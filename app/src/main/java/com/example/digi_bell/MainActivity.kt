@@ -1,6 +1,8 @@
 package com.example.digi_bell
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,17 +12,32 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private val sharedPrefFile = "SharedPref"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = Firebase.auth
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val recSen = sharedPreferences.getString("Snd", " ")
         val TIME_OUT = 400
         Handler().postDelayed({
             if(auth.currentUser == null){
             val inte = Intent(this, SignUp::class.java)
             startActivity(inte)
             finish()}
-            else{
+            else if (auth.currentUser != null && recSen == "Sender"){
+                val intent = Intent(this, HomeScreen1::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else if (auth.currentUser != null && recSen == "Receiver"){
+                val intent = Intent(this, Receiver::class.java)
+                startActivity(intent)
+                finish()
+            }else{
                 val intent = Intent(this, ScanReceive::class.java)
                 startActivity(intent)
                 finish()

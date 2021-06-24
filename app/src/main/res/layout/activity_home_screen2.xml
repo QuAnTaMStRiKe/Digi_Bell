@@ -16,60 +16,41 @@
         android:background="@drawable/ic_group_223logo_1"
         android:gravity="center" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="314dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Press the button to stop call"
+        android:textSize="25sp" />
+
     <RelativeLayout
         android:id="@+id/shape_layout"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/circle"
-        >
+        android:layout_marginBottom="197dp"
+        android:background="@drawable/circle">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/myCardView2"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            app:cardCornerRadius="50dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            >
+            app:cardCornerRadius="50dp">
+
             <ImageButton
                 android:id="@+id/hmbtn2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:background="@mipmap/bell_foreground"
-                />
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="45dp">
 
-        <ImageButton
-            android:id="@+id/button"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_home" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="270dp"
-        android:layout_marginBottom="45dp">
-
-        <ImageButton
-            android:id="@+id/button2"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/black"
-            android:background="@drawable/ic_profile"/>
-    </LinearLayout>
 </RelativeLayout>
