@@ -1,33 +1,71 @@
 {
   "project_info": {
-    "project_number": "445174286974",
-    "project_id": "digi-bell-9e24f",
-    "storage_bucket": "digi-bell-9e24f.appspot.com"
+    "project_number": "917107686707",
+    "firebase_url": "https://digi-bell-930dc-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "digi-bell-930dc",
+    "storage_bucket": "digi-bell-930dc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:445174286974:android:0cee43595a2483728e262f",
+        "mobilesdk_app_id": "1:917107686707:android:696505aaa38b8cba979246",
         "android_client_info": {
-          "package_name": "com.example.digi_bell"
+          "package_name": "com.company.digi_bell"
         }
       },
       "oauth_client": [
         {
-          "client_id": "445174286974-osdnlforraqgtpuhk9nrb9lm2lstc4g7.apps.googleusercontent.com",
+          "client_id": "917107686707-eu6u6frmdl6lb0hm6t5ndcb5kadg0hii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.digi_bell",
+            "certificate_hash": "21159b5c302c60bde646b19d00dfc136e1dda01d"
+          }
+        },
+        {
+          "client_id": "917107686707-729l7st6burm9cepg56ou8rc3l06hnpk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDOODXCvPExBi0fLZ-t7_fVkZL76W1x8Hc"
+          "current_key": "AIzaSyDAGtYy7eKw-eixfLqnxAQyxuC6n7S4e6U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "445174286974-osdnlforraqgtpuhk9nrb9lm2lstc4g7.apps.googleusercontent.com",
+              "client_id": "917107686707-729l7st6burm9cepg56ou8rc3l06hnpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917107686707:android:54de1714a7482d36979246",
+        "android_client_info": {
+          "package_name": "com.example.digi_bell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917107686707-729l7st6burm9cepg56ou8rc3l06hnpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAGtYy7eKw-eixfLqnxAQyxuC6n7S4e6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917107686707-729l7st6burm9cepg56ou8rc3l06hnpk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
