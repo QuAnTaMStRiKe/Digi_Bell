@@ -10,12 +10,14 @@
         android:id="@+id/logoSR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="74dp"
+        android:background="@mipmap/mainlogo_foreground"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/ic_group_223logo_1"
-        android:gravity="center" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
