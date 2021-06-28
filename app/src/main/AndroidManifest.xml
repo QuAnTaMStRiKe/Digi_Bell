@@ -13,10 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digi_Bell">
-        <activity
-            android:name=".MainActivity2"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.Digi_Bell.NoActionBar"></activity>
+
+
         <activity android:name=".Login" />
         <activity android:name=".NumberUpdate" />
         <activity android:name=".GestureMain" />
