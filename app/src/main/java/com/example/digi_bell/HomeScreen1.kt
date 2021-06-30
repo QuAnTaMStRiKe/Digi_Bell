@@ -5,26 +5,22 @@ import android.content.Intent
 import android.os.*
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_home_screen1.*
+import kotlinx.android.synthetic.main.toolbar_main.*
 
 
 class HomeScreen1 : AppCompatActivity() {
 
-
     private var abdt: ActionBarDrawerToggle? = null
-
-
 
     private lateinit var auth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
@@ -33,26 +29,10 @@ class HomeScreen1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen1)
-
-
         val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
 
-        goToqr.setOnClickListener {
-            val qr = Intent(this, Generator1::class.java)
-            startActivity(qr)
-        }
-
-        chngRcv.setOnClickListener {
-            val rcv = Intent(this, ScanReceive::class.java)
-            startActivity(rcv)
-        }
-
-        backGen.setOnClickListener {
-            val intentSr = Intent(this, Generator1::class.java)
-            startActivity(intentSr)
-        }
 
         hmbtn1.setOnClickListener {
            val help:String = "1234"
@@ -68,41 +48,54 @@ class HomeScreen1 : AppCompatActivity() {
             }
             val i = Intent(this, HomeScreen2::class.java)
             startActivity(i)
+            overridePendingTransition(0, 0)
        }
-        up1.setOnClickListener {
-            val int = Intent(this, UserProfile::class.java)
-            startActivity(int)
-        }
 
-
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
         abdt = ActionBarDrawerToggle(
             this,
-            drawer_layout,
+            drawer_layout,toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-
         abdt!!.isDrawerIndicatorEnabled = true
         drawer_layout!!.addDrawerListener(abdt!!)
         abdt!!.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
 
         navigation!!.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.profile -> {
-                    Log.e("Account", "My Account Clicked")
-                    Toast.makeText(this, "My Account", Toast.LENGTH_SHORT).show()
+                    val gotoAcc = Intent(this, Personal_info::class.java)
+                    startActivity(gotoAcc)
+                    overridePendingTransition(0, 0)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.qrCode -> {
-                    Toast.makeText(this, "Show QR Code", Toast.LENGTH_SHORT).show()
+                    val gotoGen = Intent(this, Generator1::class.java)
+                    startActivity(gotoGen)
+                    overridePendingTransition(0, 0)
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.bcmReceiver -> {
-                    Toast.makeText(this, "Become Receiver", Toast.LENGTH_SHORT).show()
+                    val gotoScRcv = Intent(this, ScanReceive::class.java)
+                    startActivity(gotoScRcv)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+                R.id.gesture -> {
+                    val gotoGes = Intent(this, GestureMain::class.java)
+                    startActivity(gotoGes)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+                R.id.logout -> {
+                    FirebaseAuth.getInstance().signOut()
+                    val log = Intent(this, Login::class.java)
+                    startActivity(log)
+                    overridePendingTransition(0, 0)
                     return@setNavigationItemSelectedListener true
                 }
             }

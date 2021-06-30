@@ -3,82 +3,107 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="@color/white">
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="106dp"
         android:layout_marginTop="59dp"
-        android:background="@mipmap/mainlogo_foreground"
+        android:background="@mipmap/fav_foreground"
         android:gravity="center" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/backGes"
+        android:layout_width="55dp"
+        android:layout_height="50sp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="350dp"
-        android:background="@drawable/ic_rectangle">
+        android:layout_marginTop="27dp"
+        android:background="@drawable/ic_backxd" />
+
+    <RelativeLayout
+        android:id="@+id/hariOM"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:background="@color/dullyellow">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="123dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
             android:text="Gestures"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="142dp"
+            android:layout_weight="1"
             android:fontFamily="sans-serif-condensed-medium"
-            />
+            android:text="Shake Shake Shake"
+            android:textAlignment="center"
+            android:textColor="@color/logocolor"
+            android:textSize="20dp" />
+
+        <Switch
+            android:id="@+id/gesOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="142dp"
+            android:layout_marginEnd="82dp"
+            android:layout_toEndOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="49dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Dabaaoooooooo"
+            android:textAlignment="center"
+            android:textColor="@color/logocolor"
+            android:textSize="20dp" />
+
+        <Switch
+            android:id="@+id/ges2On"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gesOn"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginEnd="82dp"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_weight="1" />
+
+
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="473dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="181dp"
-        android:layout_weight="1"
-        android:text="Pressing Volume Down Button 3 times make the registered contacts mobile phones vibrate."
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:textSize="20dp" />
-
-    <Switch
-        android:id="@+id/gesOn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="183dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="104dp"
-        android:gravity="center"
-        android:textAlignment="center" />
-
-    <ImageButton
-        android:id="@+id/backGes"
-        android:layout_width="35dp"
-        android:layout_height="30sp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="27dp"
-        android:background="@drawable/ic_back_button"
-        android:gravity="left" />
 
 
 </RelativeLayout>

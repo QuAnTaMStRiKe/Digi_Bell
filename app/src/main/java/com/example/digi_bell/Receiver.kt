@@ -10,9 +10,11 @@ import android.os.Handler
 import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -26,7 +28,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_home_screen1.*
 import kotlinx.android.synthetic.main.activity_receiver.*
+import kotlinx.android.synthetic.main.toolbar_main.*
 
 
 class Receiver : AppCompatActivity() {
@@ -42,7 +46,7 @@ class Receiver : AppCompatActivity() {
     lateinit var codescanner: CodeScanner
     private var name: String? = ""
     private var name2: String? = ""
-
+    private var abdt: ActionBarDrawerToggle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -70,10 +74,10 @@ class Receiver : AppCompatActivity() {
         }
 
 
-        bcmSender.setOnClickListener {
-            val bcmS = Intent(this, ScanReceive::class.java)
-            startActivity(bcmS)
-        }
+//        bcmSender.setOnClickListener {
+//            val bcmS = Intent(this, ScanReceive::class.java)
+//            startActivity(bcmS)
+//        }
 
         addId.setOnClickListener {
             name?.let { it1 -> list2.add(it1) }
@@ -153,15 +157,15 @@ class Receiver : AppCompatActivity() {
 
 
 
-        bakSR.setOnClickListener {
-            val bakScRcv = Intent(this, ScanReceive::class.java)
-            startActivity(bakScRcv)
-        }
-
-        up3.setOnClickListener {
-            val usrPro = Intent(this, UserProfile::class.java)
-            startActivity(usrPro)
-        }
+//        bakSR.setOnClickListener {
+//            val bakScRcv = Intent(this, ScanReceive::class.java)
+//            startActivity(bakScRcv)
+//        }
+//
+//        up3.setOnClickListener {
+//            val usrPro = Intent(this, UserProfile::class.java)
+//            startActivity(usrPro)
+//        }
 
 
 
@@ -179,8 +183,53 @@ class Receiver : AppCompatActivity() {
             }
         })
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
+        abdt = ActionBarDrawerToggle(
+            this,
+            drawer_layout1,toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        abdt!!.isDrawerIndicatorEnabled = true
+        drawer_layout1!!.addDrawerListener(abdt!!)
+        abdt!!.syncState()
+
+
+
+        navigation1!!.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.profile1   -> {
+                    val gotoAcc = Intent(this, Personal_info::class.java)
+                    startActivity(gotoAcc)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+
+                R.id.bcmSender -> {
+                    val gotoScRcv = Intent(this, ScanReceive::class.java)
+                    startActivity(gotoScRcv)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+                R.id.logout1 -> {
+                    FirebaseAuth.getInstance().signOut()
+                    val log = Intent(this, Login::class.java)
+                    startActivity(log)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+            }
+            return@setNavigationItemSelectedListener true
+        }
+
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (abdt!!.onOptionsItemSelected(item)) true else super.onOptionsItemSelected(item!!)
+    }
+
 
     private fun dataRef(list: ArrayList<String>) {
 

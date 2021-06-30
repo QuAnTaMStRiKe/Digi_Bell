@@ -26,6 +26,7 @@ class ScanReceive : AppCompatActivity() {
                 editor.commit()
                 val intent = Intent (this, Generator1::class.java )
                 startActivity(intent)
+                overridePendingTransition(0, 0)
             }
 
            scanner.setOnClickListener {
@@ -35,6 +36,7 @@ class ScanReceive : AppCompatActivity() {
                editor.commit()
                val intentSc = Intent(this, Receiver::class.java)
                startActivity(intentSc)
+               overridePendingTransition(0, 0)
            }
 
 

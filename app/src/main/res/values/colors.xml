@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF19</color>
+    <color name="logocolor">#FF5E5E</color>
+    <color name="receiver">#FF5722</color>
+    <color name="dullyellow">#FFD088</color>
 </resources>

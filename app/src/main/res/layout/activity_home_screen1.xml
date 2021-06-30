@@ -10,130 +10,69 @@
 
 
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/navigation_header"
-            app:menu="@menu/navigation_menu" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <RelativeLayout
-                android:id="@+id/shape_layout"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="192dp"
-                android:background="@drawable/circle"
-                app:layout_constraintHorizontal_bias="0.518"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logo">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/myCardView2"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    app:cardCornerRadius="50dp">
 
-                    <ImageButton
-                        android:id="@+id/hmbtn1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@mipmap/bell_foreground"
-                        android:scaleType="centerCrop" />
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/backGen"
-                android:layout_width="35dp"
-                android:layout_height="30sp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="100dp"
-                android:background="@mipmap/menubar_foreground"
-                app:layout_constraintLeft_toLeftOf="parent"
+                <ImageView
+                    android:id="@+id/disco"
+                    android:layout_width="210dp"
+                    android:layout_height="210dp"
+                    android:background="@drawable/circle"
+                    android:foregroundGravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+                <ImageButton
+                    android:id="@+id/hmbtn1"
+                    android:layout_width="190dp"
+                    android:layout_height="190dp"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/bell_foreground"
+                    android:foregroundGravity="center"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="@+id/disco"
+                    app:layout_constraintEnd_toEndOf="@+id/disco"
+                    app:layout_constraintStart_toStartOf="@+id/disco"
+                    app:layout_constraintTop_toTopOf="@+id/disco"
+                    />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
             <RelativeLayout
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:background="@mipmap/finallogoxd_foreground"
-                android:gravity="center"
+                android:background="@drawable/ic_namelogoxdd"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginBottom="50dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent">
 
-                <ImageButton
-                    android:id="@+id/hm1"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_home" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="100dp"
-                android:layout_marginBottom="50dp">
-
-                <ImageButton
-                    android:id="@+id/up1"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_profile" />
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/goToqr"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="56dp"
-                android:background="@mipmap/ic_qr_foreground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/shape_layout"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.35" />
-
-            <Button
-                android:id="@+id/chngRcv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
-                android:backgroundTint="@color/black"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:padding="3dp"
-                android:text="Become Receiver"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/shape_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logo"
-                app:layout_constraintVertical_bias="0.472" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<include layout="@layout/toolbar_main"/>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_menu" />
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 

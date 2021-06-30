@@ -34,6 +34,7 @@ class Generator1 : AppCompatActivity() {
         backSR.setOnClickListener {
             val sndScnRcv = Intent(this, ScanReceive::class.java)
             startActivity(sndScnRcv)
+            overridePendingTransition(0, 0)
         }
 
         val writer = QRCodeWriter()

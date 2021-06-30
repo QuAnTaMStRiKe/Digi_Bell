@@ -98,6 +98,7 @@ public class Login extends AppCompatActivity {
             tvSignUp.setOnClickListener(v -> {
                 Intent intSignUp = new Intent(Login.this, SignUp.class);
                 startActivity(intSignUp);
+                overridePendingTransition(0, 0);
             });
 
             loginNumBtn.setOnClickListener(v -> {
@@ -109,7 +110,7 @@ public class Login extends AppCompatActivity {
                 loginEmailBtn.setVisibility(View.VISIBLE);
                 code.setVisibility(View.VISIBLE);
                 btnSignInPhn.setVisibility(View.VISIBLE);
-
+                btnSignIn.setVisibility(View.INVISIBLE);
             });
 
             loginEmailBtn.setOnClickListener(v -> {
@@ -121,7 +122,7 @@ public class Login extends AppCompatActivity {
                 loginEmailBtn.setVisibility(View.INVISIBLE);
                 code.setVisibility(View.INVISIBLE);
                 btnSignInPhn.setVisibility(View.INVISIBLE);
-
+                btnSignIn.setVisibility(View.VISIBLE);
             });
 
             code.setOnClickListener(v->{
@@ -129,14 +130,29 @@ public class Login extends AppCompatActivity {
             });
 
             btnSignInPhn.setOnClickListener(v->{
-                verifySignInCode();
+                String phNo = phoneNo.getText().toString();
                 String vCode = loginPass.getText().toString().trim();
-                if (vCode.isEmpty() || vCode.length() < 6) {
-                    loginPass.setError("Enter valid code");
-                    loginPass.requestFocus();
-                    return;
+                if(phNo.isEmpty()){
+                    emailId.setError("Please enter Phone Number");
+                    emailId.requestFocus();
                 }
-                verifyVerificationCode(vCode);
+                else  if(vCode.isEmpty()){
+                    password.setError("Please enter verification Code");
+                    password.requestFocus();
+                }else  if(phNo.isEmpty() && vCode.isEmpty()){
+                    Toast.makeText(Login.this,"Fields Are Empty!",Toast.LENGTH_SHORT).show();
+                }
+                else  if(!(phNo.isEmpty() && vCode.isEmpty())){
+                    verifySignInCode();
+
+                    if (vCode.isEmpty() || vCode.length() < 6) {
+                        loginPass.setError("Enter valid code");
+                        loginPass.requestFocus();
+                        return;
+                    }
+                    verifyVerificationCode(vCode);
+                }
+
             });
 
 
@@ -144,7 +160,6 @@ public class Login extends AppCompatActivity {
         }
 
     private void verifySignInCode() {
-
         String vCode = loginPass.getText().toString();
 
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, vCode);

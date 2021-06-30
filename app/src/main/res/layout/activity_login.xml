@@ -1,201 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="78dp"
-        android:background="@mipmap/mainlogo_foreground" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:background="@mipmap/fav_foreground">
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginBottom="416dp">
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="-1dp"
+        android:background="@drawable/ic_bgcolor2">
+
 
         <Button
             android:id="@+id/signuplx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="18dp"
             android:layout_weight="1"
-            android:text="Sign Up"
             android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Sign Up"
             android:textColor="@color/black"
             android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            />
-    </LinearLayout>
+            app:cornerRadius="20dp" />
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="236dp"
-        android:layout_marginBottom="414dp">
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginl"
+            android:layout_alignStart="@+id/loginl"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="-6dp"
+            android:background="@drawable/ic_bar" />
+
         <Button
             android:id="@+id/loginl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginBottom="7dp"
             android:layout_weight="1"
-            android:text="Log In"
             android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=" Login "
             android:textColor="@color/black"
             android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            />
+            app:cornerRadius="20dp" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="256dp"
-        android:layout_marginBottom="408dp"
-        android:background="@drawable/ic_bar" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="300dp"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/emailIdL"
-            android:fontFamily="sans-serif-condensed-medium"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="Email Id" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="300dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/passwordL"
-            android:fontFamily="sans-serif-condensed-medium"
+            <EditText
+                android:id="@+id/emailIdL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:hint="Email Id"
+                android:inputType="textEmailAddress"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/passwordL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Password" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="300dp"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/phnNO"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="300dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/phnNO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:hint="Phone Number"
+                android:inputType="textEmailAddress"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/passwordPhn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:hint="Enter verification code"
+                android:inputType="textPassword"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/loginNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Login Using Number"
+            android:textColor="@color/black"
             android:visibility="invisible"
-            android:hint="Phone Number" />
+            app:cornerRadius="20dp" />
 
-        <EditText
-            android:id="@+id/passwordPhn"
-            android:fontFamily="sans-serif-condensed-medium"
+        <Button
+            android:id="@+id/loginEmailBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Login Using Email"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="250dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Get Verification Code"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            app:cornerRadius="20dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="194dp"
+            android:layout_marginBottom="150dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="OR"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/loginCnfrmx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             android:visibility="invisible"
-            android:hint="Enter the verification code" />
-    </LinearLayout>
+            app:cornerRadius="20dp" />
 
-    <Button
-        android:id="@+id/loginNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="137dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Login Using Number" />
-    <Button
-        android:id="@+id/loginEmailBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="137dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:visibility="invisible"
-        android:text="Login Using Email" />
-    <Button
-        android:id="@+id/code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="250dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:visibility="invisible"
-        android:text="Get Verification Code" />
+        <Button
+            android:id="@+id/btnSignInPhn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="159dp"
+            android:layout_marginBottom="200dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:visibility="visible"
+            app:cornerRadius="20dp" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="OR"
-        android:textSize="20sp" />
-
-
-    <Button
-        android:id="@+id/loginCnfrmx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="64dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Login"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/btnSignInPhn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="66dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:visibility="invisible"
-        android:text="Login"
-        android:textSize="20dp" />
-
+    </RelativeLayout>
 </RelativeLayout>

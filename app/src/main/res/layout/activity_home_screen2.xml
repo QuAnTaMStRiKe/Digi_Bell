@@ -1,56 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:background="@drawable/ic_bgcolor"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@mipmap/mainlogo_foreground"
-        android:gravity="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="314dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Press the button to stop call"
-        android:textSize="25sp" />
 
-    <RelativeLayout
-        android:id="@+id/shape_layout"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="197dp"
-        android:background="@drawable/circle">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/myCardView2"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+
+        <ImageView
+            android:id="@+id/disco"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:background="@drawable/circle"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+        <ImageView
+            android:id="@+id/disco1"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:background="@drawable/circle"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+
+        <ImageButton
+            android:id="@+id/hmbtn2"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/bell_foreground"
+            android:foregroundGravity="center"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/disco"
+            app:layout_constraintEnd_toEndOf="@+id/disco"
+            app:layout_constraintStart_toStartOf="@+id/disco"
+            app:layout_constraintTop_toTopOf="@+id/disco" />
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="50dp">
-
-            <ImageButton
-                android:id="@+id/hmbtn2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/bell_foreground"
-                android:scaleType="centerCrop" />
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+            android:background="@drawable/ic_namelogoxdd"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+

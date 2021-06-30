@@ -1,101 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white">
 
     <RelativeLayout
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@mipmap/mainlogo_foreground"
-        android:gravity="center" />
+        android:layout_marginTop="17dp"
+        android:background="@mipmap/fav_foreground"
+        android:gravity="center">
+
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/backSR"
-        android:layout_width="35dp"
-        android:layout_height="30sp"
-        android:layout_marginLeft="17dp"
+        android:layout_width="55dp"
+        android:layout_height="50sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="27dp"
-        android:background="@drawable/ic_back_button"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/ic_backxd"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/ivQRCode"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="107dp"
-        android:layout_marginTop="308dp"
-        android:layout_marginEnd="107dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="88dp"
-        android:hint="Enter Data"
-        android:visibility="invisible"
-        android:clickable="false"/>
-
-    <View
-        android:id="@+id/view1"
+    <RelativeLayout
+        android:id="@+id/rel"
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
+        android:layout_height="500dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginBottom="142dp"
-        android:background="@color/purple_700" />
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="-1dp"
+        android:background="@drawable/ic_bgcolor2">
 
-    <Button
-        android:id="@+id/sendToHm1"
-        android:layout_width="156dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="147dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="65dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Done" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="243dp"
-        android:text="Scan the QR code generated below in the other device as Receiver"
-        android:textAlignment="center"
-        android:fontFamily="sans-serif-condensed-medium"
+        <ImageView
+            android:id="@+id/ivQRCode"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@+id/tvt"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="76dp"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/etData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="104dp"
+            android:layout_marginEnd="107dp"
+            android:layout_marginBottom="18dp"
+            android:clickable="false"
+            android:hint="Enter Data"
+            android:visibility="invisible" />
 
+
+
+        <Button
+            android:id="@+id/sendToHm1"
+            android:layout_width="156dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="129dp"
+            android:layout_marginEnd="125dp"
+            android:layout_marginBottom="63dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Done"
+            android:textColor="@color/black"
+            app:cornerRadius="20dp" />
+
+        <TextView
+            android:id="@+id/tvt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-2dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Scan the QR code generated below in the other device as Receiver"
+
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </RelativeLayout>

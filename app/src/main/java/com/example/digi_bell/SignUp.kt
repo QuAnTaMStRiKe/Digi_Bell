@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.lang.NullPointerException
 import java.sql.Types.NULL
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -33,6 +34,9 @@ class SignUp : AppCompatActivity() {
         auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        showPassInNum.text = null
+        showPassInNum.textOn = null
+        showPassInNum.textOff = null
 
 
 
@@ -41,12 +45,14 @@ class SignUp : AppCompatActivity() {
             if (isChecked) {
                 showPassInNum.setBackgroundResource(R.drawable.ic_openeye)
                 passInNum.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                showPassInNum.hint = "Password"
-                showPassInNum.textOn = NULL.toString()
-                showPassInNum.textOff = NULL.toString()
+                showPassInNum.text = null
+                showPassInNum.textOn = null
+                showPassInNum.textOff = null
             } else {
-                showPassInNum.setBackgroundResource(R.drawable.ic_eye)
-                showPassInNum.hint = "Password"
+                showPassInNum.setBackgroundResource(R.drawable.ic_closeeye)
+                showPassInNum.text = null
+                showPassInNum.textOn = null
+                showPassInNum.textOff = null
                 passInNum.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 passInNum.setSelection(passInNum.text.length)
             }
@@ -56,6 +62,7 @@ class SignUp : AppCompatActivity() {
         loginSx.setOnClickListener {
             val gotoLogin = Intent(this, Login::class.java)
             startActivity(gotoLogin)
+            overridePendingTransition(0, 0)
 
         }
 

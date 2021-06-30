@@ -1,15 +1,19 @@
 package com.example.digi_bell
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseException
+import androidx.core.view.isVisible
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -18,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.name_update.*
 import kotlinx.android.synthetic.main.number_update.*
-import java.util.concurrent.TimeUnit
 
 
 class Personal_info : AppCompatActivity() {
@@ -26,17 +29,29 @@ class Personal_info : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private var currentPassword: String = ""
     private var firebaseUserID: String = ""
+    private val sharedPrefFile = "SharedPref"
+    private var sendid: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
 
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
 
         backPI.setOnClickListener {
-            val i = Intent(this, UserProfile::class.java)
-            startActivity(i)
+            sendid = sharedPreferences.getString("Snd"," ")
+            if (sendid == "Sender"){
+                val bak = Intent(this, HomeScreen1::class.java)
+                startActivity(bak)
+                overridePendingTransition(0, 0)
+            } else if(sendid == "Receiver"){
+                val bakRec = Intent(this, Receiver::class.java)
+                startActivity(bakRec)
+                overridePendingTransition(0, 0)
+            }
         }
 
         dbRef.child("Name").addValueEventListener(object : ValueEventListener{
@@ -164,39 +179,36 @@ private fun showUpdatePassword(){
         editText.text = emailPI.editableText
         builder.setView(view)
         builder.setPositiveButton("Update") { _, _ ->
-            val name = editText.text.toString()
+            val emailID = editText.text.toString()
             val pass = editText2.text.toString()
-            if (name == null) {
+            if (emailID == null) {
                 editText.error = "Please enter a Email Id"
                 editText.requestFocus()
                 return@setPositiveButton
             } else if (editText2.text.toString() == currentPassword){
-            val credential = EmailAuthProvider.getCredential(name, pass)
-            auth.currentUser!!.linkWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
+                    val credential = EmailAuthProvider.getCredential(emailID, pass)
+                user?.linkWithCredential(credential)?.addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Log.d("Success", "linkWithCredential:success")
-
-
+                        Log.e("Success", "linkWithCredential:success")
+                        dbRef.child("Email Id").setValue(emailID)
+                        fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+                        emailPI.text = emailID.toEditable()
+                        Toast.makeText(this, "Email Updated", Toast.LENGTH_SHORT).show()
+                        emailEdit.isVisible = false
                     } else {
-                        Log.w("Fail", "linkWithCredential:failure", task.exception)
+                        Log.e("Fail", "linkWithCredential:failure", task.exception)
                         Toast.makeText(
                             baseContext, "Authentication failed.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
-
-//            user!!.updateEmail(name)
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        Log.d("TAG", "User email address updated.")
-//                    }
-//                }
-            dbRef.child("Email Id").setValue(name)
-            fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
-            emailPI.text = name.toEditable()
-            Toast.makeText(this, "Email Updated", Toast.LENGTH_SHORT).show()
+                    user!!.updateEmail(emailID)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("TAG", "User email address updated.")
+                            }
+                        }
         }
         }
         builder.setNegativeButton("No"){ _, _ ->
@@ -246,7 +258,7 @@ private fun showUpdatePassword(){
         val editText = view.findViewById<EditText>(R.id.nameEN)
         editText.text = namePI.editableText
         builder.setView(view)
-        builder.setPositiveButton("Update"){ _, _ ->
+        builder.setPositiveButton("Change"){ _, _ ->
             val name = editText.text.toString()
             if(name == null){
                 editText.error = "Please enter a name"
@@ -258,11 +270,12 @@ private fun showUpdatePassword(){
             namePI.text = name.toEditable()
             Toast.makeText(this, "Name Updated", Toast.LENGTH_SHORT).show()
         }
-        builder.setNegativeButton("No"){ _, _ ->
+
+        builder.setNegativeButton("Cancel"){ _, _ ->
 
         }
         val alert = builder.create()
-        alert.show()
+            alert.show()
     }
 
 }

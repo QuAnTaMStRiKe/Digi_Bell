@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/profile1"
+        android:title="User Profile"
+        android:icon="@drawable/ic_profile"
+        android:iconTint="#FF5E5E"/>
+
+    <item
+        android:id="@+id/bcmSender"
+        android:title="Sender"
+        android:icon="@drawable/ic_baseline_compare_arrows_24"
+        android:iconTint="#FF5E5E"/>
+
+    <item
+        android:id="@+id/logout1"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:iconTint="#FF5E5E"/>
+</menu>

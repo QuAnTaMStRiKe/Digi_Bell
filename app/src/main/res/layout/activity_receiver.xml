@@ -1,201 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout1"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:background="@drawable/ic_bgcolor">
 
-
-
-    <com.budiyev.android.codescanner.CodeScannerView
-        android:id="@+id/scanner_view_rec"
-        android:layout_marginTop="70sp"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:autoFocusButtonColor="@color/white"
-        app:autoFocusButtonVisible="true"
-        app:flashButtonColor="@color/white"
-        app:flashButtonVisible="true"
-        app:frameColor="@color/white"
-        app:frameCornersSize="50dp"
-        app:frameCornersRadius="0dp"
-        app:frameAspectRatioHeight="1"
-        app:frameAspectRatioWidth="1"
-        app:frameSize="0.75"
-        app:frameThickness="2dp"
-        app:maskColor="#77000000"
-        android:layout_marginLeft="80dp"/>
-
-
-    <ListView
-        android:id="@+id/lvSenderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="365dp"
-        android:layout_marginBottom="175dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:choiceMode="multipleChoice"/>
-
-    <ListView
-        android:id="@+id/lvSenderId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="365dp"
-        android:layout_marginBottom="175dp"
-        android:visibility="invisible"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:choiceMode="multipleChoice"/>
-
-    <Button
-        android:id="@+id/deleteId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="551dp"
-        android:layout_marginEnd="79dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Remove" />
-
-    <Button
-        android:id="@+id/addId"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="551dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Add" />
-
-    <Button
-        android:id="@+id/bcmSender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/black"
-        android:padding="3dp"
-        android:text="Become Sender"
-        android:textSize="10sp" />
-
-    <ImageButton
-        android:id="@+id/bakSR"
-        android:layout_width="35dp"
-        android:layout_height="30sp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="27dp"
-        android:background="@drawable/ic_back_button"
-        android:backgroundTint="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Receiver"
-        android:layout_marginTop="15dp"
-        android:textAlignment="center"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/tvSwitchOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="87dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Switch Off the incoming call:"
-        android:textSize="22sp" />
-
-    <Switch
-        android:id="@+id/audioON"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="87dp"
-        android:visibility="invisible" />
-
-
-    <TextView
-        android:id="@+id/tvSid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="320dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:textAlignment="center"
-        android:text="Sender IDs are shown below, You can select and remove them using remove whenever needed."
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/senderIDx"
-        android:layout_width="5dp"
-        android:layout_height="5dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="684dp"
-        android:layout_marginEnd="-3dp"
-        android:layout_marginBottom="-3dp"
-        android:textAlignment="center"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/helpReceived"
-        android:layout_width="5dp"
-        android:layout_height="5dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-3dp"
-        android:hint="helpxxx"
-        android:visibility="invisible"
-        android:textAlignment="center"
-         />
-
-
-    <ImageButton
-        android:id="@+id/hm2"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/ic_home"
-        android:clickable="false" />
-
-
-    <ImageButton
-        android:id="@+id/up3"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/ic_profile" />
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/laila"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/ic_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_namelogoxdd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/scanner_view_rec"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_below="@+id/laila"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="59dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="59dp"
+            app:autoFocusButtonColor="@color/white"
+            app:autoFocusButtonVisible="true"
+            app:flashButtonColor="@color/white"
+            app:flashButtonVisible="true"
+            app:frameAspectRatioHeight="1"
+            app:frameAspectRatioWidth="1"
+            app:frameColor="@color/white"
+            app:frameCornersRadius="0dp"
+            app:frameCornersSize="50dp"
+            app:frameSize="0.75"
+            app:frameThickness="2dp"
+            app:maskColor="#77000000" />
+
+        <ListView
+            android:id="@+id/lvSenderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSid"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="2dp"
+            android:choiceMode="multipleChoice"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
+
+
+        <ListView
+            android:id="@+id/lvSenderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lvSenderName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="58dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="175dp"
+            android:choiceMode="multipleChoice"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/deleteId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="93dp"
+            android:layout_marginBottom="80dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Remove"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/addId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginBottom="80dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=" Add "
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+
+
+        <TextView
+            android:id="@+id/tvSwitchOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="31dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Switch Off the incoming call:"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <Switch
+            android:id="@+id/audioON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="32dp"
+            android:layout_toEndOf="@+id/tvSwitchOff"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tvSid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scanner_view_rec"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="71dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="71dp"
+            android:fontFamily="sans-serif-condensed"
+            android:foregroundGravity="center_horizontal"
+            android:text="Sender IDs are shown below"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/senderIDx"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="684dp"
+            android:layout_marginEnd="-3dp"
+            android:layout_marginBottom="-3dp"
+            android:textAlignment="center"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/helpReceived"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-3dp"
+            android:hint="helpxxx"
+            android:textAlignment="center"
+            android:visibility="invisible" />
+
+
+        <RelativeLayout
             android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="320dp"
-           android:layout_alignParentBottom="true"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:visibility="invisible">
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            app:layout_constraintHorizontal_bias="1.0">
 
             <TextView
                 android:id="@+id/tv_pass"
@@ -217,17 +212,18 @@
                 android:saveEnabled="false" />
         </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
+
+    </RelativeLayout>
+
+    <include layout="@layout/toolbar_main"/>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="318dp"
-        android:layout_marginTop="-8dp"
-        android:layout_marginEnd="7dp"
-        app:srcCompat="@mipmap/mainlogo_foreground" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_menu2"
+        />
 
 
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,81 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="@color/white">
 
     <ImageButton
         android:id="@+id/backUpNum"
-        android:layout_width="35dp"
-        android:layout_height="30sp"
-        android:layout_marginStart="17dp"
+        android:layout_width="55dp"
+        android:layout_height="50sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="27dp"
-        android:background="@drawable/ic_back_button"
-        android:backgroundTint="@color/black" />
+        android:background="@drawable/ic_backxd" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="14dp"
-        android:background="@mipmap/mainlogo_foreground" >
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/editNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/abeyr"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="311dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Enter the number below:"
-        android:textSize="20dp" />
+        android:layout_marginTop="17dp"
+        android:background="@mipmap/fav_foreground"
+        android:gravity="center" >
+    </RelativeLayout>
 
-    <EditText
-        android:id="@+id/numberEN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editNum"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="346dp"
-        android:layout_marginEnd="163dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:hint="Number"
-        android:inputType="number"
-        android:textSize="20dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="487dp"
+        android:layout_alignParentStart="true"
 
-    <Button
-        android:id="@+id/inUpdateVcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberEN"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/black"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Get Verification Code"/>
-
-    <EditText
-        android:id="@+id/codeNumUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inUpdateVcode"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:hint="Enter Code"
-        />
-
-    <Button
-        android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="152dp"
-        android:text="Done" />
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ic_bgcolor2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/editNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="53dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Enter the number below:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/numberEN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editNum"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="163dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:hint="Number"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:maxLength="10"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/inUpdateVcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/numberEN"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="102dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Get Verification Code"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:cornerRadius="20dp" />
+
+        <EditText
+            android:id="@+id/codeNumUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inUpdateVcode"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="140dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:hint="- - - - - -"
+            android:gravity="center"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="158dp"
+            android:layout_marginEnd="158dp"
+            android:layout_marginBottom="61dp"
+            android:backgroundTint="@color/white"
+            android:text="Done"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
