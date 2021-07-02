@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Enter the Contacts below:"
+        android:text="Enter the number below:"
         android:textSize="20dp" />
 
     <EditText
@@ -24,33 +24,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
-        android:hint="Contact-1"
+        android:hint="Contact"
         android:inputType="number"
         android:textSize="20dp" />
-
     <EditText
-        android:id="@+id/upCon2"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:id="@+id/passUC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/upCon1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:hint="Contact-2"
-        android:inputType="number"
-        android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/upCon3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="218dp"
-        android:hint="Contact-3"
-        android:inputType="number"
         android:fontFamily="sans-serif-condensed-medium"
-        android:textSize="20dp" />
+        android:hint="Password"/>
+
 
 
 </RelativeLayout>

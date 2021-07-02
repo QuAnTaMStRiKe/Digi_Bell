@@ -183,7 +183,7 @@ class SignUp : AppCompatActivity() {
 
                 } else {
 
-                    val message = "Something is wrong, we will fix it soon..."
+                    val message = "Loading..."
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }

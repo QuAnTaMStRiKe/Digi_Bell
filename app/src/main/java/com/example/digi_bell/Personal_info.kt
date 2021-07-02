@@ -108,7 +108,6 @@ class Personal_info : AppCompatActivity() {
         numberEdit.setOnClickListener {
             val goToUpdateNum = Intent(this, NumberUpdate::class.java)
             startActivity(goToUpdateNum)
-
         }
         emailEdit.setOnClickListener {
             showUpdateEmail(emailPI)
@@ -118,7 +117,8 @@ class Personal_info : AppCompatActivity() {
         }
 
     }
-private fun showUpdatePassword(){
+
+    private fun showUpdatePassword(){
     firebaseUserID = auth.currentUser!!.uid
     dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
     val user = FirebaseAuth.getInstance().currentUser
@@ -136,9 +136,6 @@ private fun showUpdatePassword(){
            if(newPass.text.toString() == newPassCnfrm.text.toString()){
                val new = newPass.text.toString()
                dbRef.child("Password").setValue(new)
-
-
-
 //              user!!.updatePassword(new)
 //                  .addOnCompleteListener { task ->
 //                      if (task.isSuccessful) {
@@ -165,6 +162,8 @@ private fun showUpdatePassword(){
     val alert = builder.create()
     alert.show()
 }
+
+
     private fun showUpdateEmail(emailPI: EditText) {
         firebaseUserID = auth.currentUser!!.uid
         dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
@@ -179,14 +178,16 @@ private fun showUpdatePassword(){
         editText.text = emailPI.editableText
         builder.setView(view)
         builder.setPositiveButton("Update") { _, _ ->
+            val em = emailPI.text.toString()
             val emailID = editText.text.toString()
             val pass = editText2.text.toString()
             if (emailID == null) {
                 editText.error = "Please enter a Email Id"
                 editText.requestFocus()
                 return@setPositiveButton
-            } else if (editText2.text.toString() == currentPassword){
+            } else if (editText2.text.toString() == currentPassword && em.isEmpty()){
                     val credential = EmailAuthProvider.getCredential(emailID, pass)
+                Toast.makeText(this, "Please login again to link your email to your account", Toast.LENGTH_SHORT).show()
                 user?.linkWithCredential(credential)?.addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Log.e("Success", "linkWithCredential:success")
@@ -194,7 +195,6 @@ private fun showUpdatePassword(){
                         fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
                         emailPI.text = emailID.toEditable()
                         Toast.makeText(this, "Email Updated", Toast.LENGTH_SHORT).show()
-                        emailEdit.isVisible = false
                     } else {
                         Log.e("Fail", "linkWithCredential:failure", task.exception)
                         Toast.makeText(
@@ -203,15 +203,20 @@ private fun showUpdatePassword(){
                         ).show()
                     }
                 }
-                    user!!.updateEmail(emailID)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.d("TAG", "User email address updated.")
-                            }
+        }else if (editText2.text.toString() == currentPassword && em.isNotEmpty()){
+                user!!.updateEmail(emailID)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            dbRef.child("Email Id").setValue(emailID)
+                            fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+                            emailPI.text = emailID.toEditable()
+                            Toast.makeText(this, "Email Updated", Toast.LENGTH_SHORT).show()
+                            Log.d("TAG", "User email address updated.")
                         }
+                    }
+            }
         }
-        }
-        builder.setNegativeButton("No"){ _, _ ->
+        builder.setNegativeButton("Cancel"){ _, _ ->
 
         }
         val alert = builder.create()

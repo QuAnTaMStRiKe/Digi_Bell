@@ -7,10 +7,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,12 +23,7 @@ import kotlin.math.sqrt
 
 class GestureMain : AppCompatActivity() {
 
-
-
-
-    private var sensorManager1: SensorManager? = null
     var count = -1
-    private var sensorManager: SensorManager? = null
     private var acceleration = 0f
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
@@ -42,6 +34,9 @@ class GestureMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gesture_main)
+
+        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensorManager1 = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
@@ -54,8 +49,7 @@ class GestureMain : AppCompatActivity() {
              val editor = getSharedPreferences("SharedPref", MODE_PRIVATE).edit()
              editor.putBoolean("Checked", true)
              editor.apply()
-             sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-             Objects.requireNonNull(sensorManager)!!.registerListener(sensorListener, sensorManager!!
+             Objects.requireNonNull(sensorManager).registerListener(sensorListener, sensorManager
                  .getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)
              acceleration = 10f
              currentAcceleration = SensorManager.GRAVITY_EARTH
@@ -64,10 +58,12 @@ class GestureMain : AppCompatActivity() {
              val editor = getSharedPreferences("SharedPref", MODE_PRIVATE).edit()
              editor.putBoolean("Checked", false)
              editor.apply()
+            // sensorManager.unregisterListener(sensorListener)
+             unregisterListener()
+             Log.e("UR", "Unregistered ACC")
              dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
              dbRef.child("Help").removeValue()
 
-          //   sensorManager!!.unregisterListener(sensorListener)
          }
      }
 
@@ -79,17 +75,19 @@ class GestureMain : AppCompatActivity() {
                 val editor = getSharedPreferences("SharedPref", MODE_PRIVATE).edit()
                 editor.putBoolean("Checked2", true)
                 editor.apply()
-                sensorManager1 = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-                Objects.requireNonNull(sensorManager1)!!.registerListener(sensorListener1, sensorManager1!!
+                Objects.requireNonNull(sensorManager1).registerListener(sensorListener1, sensorManager1
                     .getDefaultSensor(Sensor.TYPE_PROXIMITY), 1000 * 1000)
 
             }else{
                 val editor = getSharedPreferences("SharedPref", MODE_PRIVATE).edit()
                 editor.putBoolean("Checked2", false)
                 editor.apply()
+               // sensorManager1.unregisterListener(sensorListener1)
+                unregisterListener()
+                Log.e("UR", "Unregistered PRO")
                 dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
                 dbRef.child("Help").removeValue()
-                sensorManager1!!.unregisterListener(sensorListener1)
+
             }
         }
 
@@ -101,12 +99,19 @@ class GestureMain : AppCompatActivity() {
 
     }
 
+    private fun unregisterListener(){
+        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensorManager1 = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager.unregisterListener(sensorListener)
+        sensorManager1.unregisterListener(sensorListener1)
+    }
 
-    private val sensorListener: SensorEventListener = object : SensorEventListener {
+
+    private var sensorListener: SensorEventListener = object : SensorEventListener {
 
         override fun onSensorChanged(event: SensorEvent) {
 
-            val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+
             val x = event.values[0]
             val y = event.values[1]
             //   val z = event.values[2]
@@ -132,13 +137,6 @@ class GestureMain : AppCompatActivity() {
                     val help: String = "1234"
                     Log.d("help", " help")
                     sendHelp(help)
-                    val vibrationEffect1: VibrationEffect
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrationEffect1 =
-                            VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)
-                        vibrator.cancel()
-                        vibrator.vibrate(vibrationEffect1)
-                    }
                     val i = Intent(this@GestureMain, HomeScreen2::class.java)
                     startActivity(i)
                     Toast.makeText(applicationContext, "Shake phone", Toast.LENGTH_SHORT).show()
@@ -150,9 +148,8 @@ class GestureMain : AppCompatActivity() {
         }
 
     }
-    private val sensorListener1: SensorEventListener = object : SensorEventListener {
+    private var sensorListener1: SensorEventListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent?) {
-            val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
             if (event!!.values[0] > 0)
             {
                 Log.e("Count", "$count")
@@ -165,16 +162,9 @@ class GestureMain : AppCompatActivity() {
                 val help: String = "1234"
                 Log.d("help", " help")
                 sendHelp(help)
-                val vibrationEffect1: VibrationEffect
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrationEffect1 =
-                        VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)
-                    vibrator.cancel()
-                    vibrator.vibrate(vibrationEffect1)
-                }
                 val i = Intent(this@GestureMain, HomeScreen2::class.java)
                 startActivity(i)
-                Toast.makeText(applicationContext, "Shake phone", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Touch Proxy Sensor", Toast.LENGTH_SHORT).show()
                 count = 0
             }
         }
@@ -187,17 +177,21 @@ class GestureMain : AppCompatActivity() {
 
 
     override fun onResume() {
-        sensorManager?.registerListener(sensorListener, sensorManager!!.getDefaultSensor(
+        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensorManager1 = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(
             Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL
         )
         super.onResume()
-        sensorManager1?.registerListener(sensorListener1, sensorManager1!!.getDefaultSensor(
+        sensorManager1.registerListener(sensorListener1, sensorManager1.getDefaultSensor(
             Sensor.TYPE_PROXIMITY), 1000 * 1000
         )
     }
     override fun onPause() {
-       // sensorManager!!.unregisterListener(sensorListener)
-        //  sensorManager1?.unregisterListener(this)
+//        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+//        val sensorManager1 = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+//        sensorManager.unregisterListener(sensorListener)
+//         sensorManager1.unregisterListener(sensorListener1)
         super.onPause()
     }
 

@@ -29,7 +29,6 @@ class HomeScreen1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen1)
-        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
 
@@ -38,14 +37,6 @@ class HomeScreen1 : AppCompatActivity() {
            val help:String = "1234"
             Log.d("help", " help")
            sendHelp(help)
-
-            val vibrationEffect1: VibrationEffect
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrationEffect1 =
-                    VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)
-                vibrator.cancel()
-                vibrator.vibrate(vibrationEffect1)
-            }
             val i = Intent(this, HomeScreen2::class.java)
             startActivity(i)
             overridePendingTransition(0, 0)

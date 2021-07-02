@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_android___1">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/fav_foreground"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727" />
 
     <ImageButton
         android:id="@+id/backUpNum"
@@ -12,111 +28,119 @@
         android:layout_height="50sp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="27dp"
-        android:background="@drawable/ic_backxd" />
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_backxd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/abeyr"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+
+    <TextView
+        android:id="@+id/editNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:background="@mipmap/fav_foreground"
-        android:gravity="center" >
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="487dp"
-        android:layout_alignParentStart="true"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/ic_bgcolor2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Enter new number below"
+        android:textColor="@color/black"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline22" />
+
+    <EditText
+        android:id="@+id/numberEN"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editNum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:hint="Number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/editNum"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/editNum"
+        app:layout_constraintTop_toBottomOf="@+id/editNum" />
+
+    <Button
+        android:id="@+id/inUpdateVcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberEN"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Get Verification Code"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/numberEN"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="@+id/numberEN"
+        app:layout_constraintTop_toBottomOf="@+id/numberEN" />
 
-        <TextView
-            android:id="@+id/editNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="53dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Enter the number below:"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+    <EditText
+        android:id="@+id/codeNumUp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inUpdateVcode"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:hint="- - - - - -"
+        android:maxLength="6"
+        android:maxLines="1"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/inUpdateVcode"
+        app:layout_constraintStart_toStartOf="@+id/inUpdateVcode"
+        app:layout_constraintTop_toBottomOf="@+id/inUpdateVcode" />
 
-        <EditText
-            android:id="@+id/numberEN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editNum"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="163dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:hint="Number"
-            android:inputType="number"
-            android:textSize="20dp"
-            android:maxLength="10"
-            android:maxLines="1"/>
+    <Button
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:text="Done"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/codeNumUp"
+        app:layout_constraintStart_toStartOf="@+id/codeNumUp"
+        app:layout_constraintTop_toBottomOf="@+id/codeNumUp" />
 
-        <Button
-            android:id="@+id/inUpdateVcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/numberEN"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="102dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Get Verification Code"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            app:cornerRadius="20dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
 
-        <EditText
-            android:id="@+id/codeNumUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/inUpdateVcode"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="140dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:maxLength="6"
-            android:maxLines="1"
-            android:hint="- - - - - -"
-            android:gravity="center"
-            android:textSize="20sp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
-        <Button
-            android:id="@+id/done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="158dp"
-            android:layout_marginEnd="158dp"
-            android:layout_marginBottom="61dp"
-            android:backgroundTint="@color/white"
-            android:text="Done"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:cornerRadius="20dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
 
 
-    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</RelativeLayout>
