@@ -135,7 +135,7 @@ class SignUp : AppCompatActivity() {
 
                 val code = phoneAuthCredential.smsCode
                 if(code != null){
-                    number.setText(code)
+                    signUpCode.setText(code)
                     verifyVerificationCode(code)
                 }
             }
