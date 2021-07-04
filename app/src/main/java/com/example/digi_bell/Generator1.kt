@@ -60,6 +60,7 @@ class Generator1 : AppCompatActivity() {
         sendToHm1.setOnClickListener {
             val sndHm = Intent(this, HomeScreen1::class.java)
             startActivity(sndHm)
+            overridePendingTransition(0, 0)
         }
         }
 

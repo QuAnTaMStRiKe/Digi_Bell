@@ -42,6 +42,15 @@ class HomeScreen2 : AppCompatActivity() {
 
         statusAnimation = statusAnimation
 
+        val TIME_OUT = 10000
+        Handler().postDelayed({
+            dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+            dbRef.child("Help").removeValue()
+            val intent = Intent(this, HomeScreen1::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        }, TIME_OUT.toLong())
+
         hmbtn2.setOnClickListener {
             dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
             dbRef.child("Help").removeValue()

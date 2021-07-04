@@ -9,8 +9,14 @@
 
     <item
         android:id="@+id/bcmSender"
-        android:title="Sender"
+        android:title="Receiver"
         android:icon="@drawable/ic_baseline_compare_arrows_24"
+        android:iconTint="#FF5E5E"/>
+
+    <item
+        android:id="@+id/scanner"
+        android:title="Scanner"
+        android:icon="@drawable/ic_baseline_qr_code_scanner_24"
         android:iconTint="#FF5E5E"/>
 
     <item

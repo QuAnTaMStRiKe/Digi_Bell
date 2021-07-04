@@ -163,13 +163,17 @@ class SignUp : AppCompatActivity() {
                     firebaseUserID = auth.currentUser!!.uid
                     dbRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
                     val userHashMap = HashMap<String, Any>()
+                    val ino = 1
                     userHashMap["uid"] = firebaseUserID
                     userHashMap["Name"] = nameInNum.text.toString()
                     userHashMap["Number"] = number.text.toString()
                     userHashMap["Email Id"]
                     userHashMap["Password"] = passInNum.text.toString()
-                    userHashMap["Contacts"]
+                    userHashMap["ListName"]
+                    userHashMap["ListNum"]
+                    userHashMap["ListId"]
                     userHashMap["Help"]
+                    userHashMap["INo"] = ino
                     dbRef.updateChildren(userHashMap).addOnCompleteListener { task ->
                         if (task.isSuccessful){
                             val intent = Intent(this, ScanReceive::class.java)

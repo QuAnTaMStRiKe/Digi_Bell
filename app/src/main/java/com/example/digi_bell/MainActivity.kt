@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             else if (auth.currentUser != null && recSen == "Receiver"){
-                val intent = Intent(this, Receiver::class.java)
+                val intent = Intent(this, Scanner::class.java)
                 startActivity(intent)
                 finish()
             }else{

@@ -77,22 +77,13 @@
         android:id="@+id/rlInfo2"
         android:layout_width="46dp"
         android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+
+        android:layout_marginTop="168dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/passCnfrmInNum"
-        app:layout_constraintEnd_toEndOf="@+id/passInNum">
+        app:layout_constraintStart_toEndOf="@+id/passInNum"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
 
 
-        <ToggleButton
-            android:id="@+id/showPassInNum"
-            android:layout_width="35dp"
-            android:layout_height="31dp"
-
-            android:background="@drawable/ic_closeeye"
-            android:text=" "
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -246,6 +237,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.75" />
+
+    <ToggleButton
+        android:id="@+id/showPassInNum"
+        android:layout_width="35dp"
+        android:layout_height="31dp"
+        android:background="@drawable/ic_closeeye"
+        android:text=" "
+        app:layout_constraintBottom_toBottomOf="@+id/rlInfo2"
+        app:layout_constraintEnd_toEndOf="@+id/rlInfo2"
+        app:layout_constraintStart_toStartOf="@+id/rlInfo2"
+        app:layout_constraintTop_toTopOf="@+id/rlInfo2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

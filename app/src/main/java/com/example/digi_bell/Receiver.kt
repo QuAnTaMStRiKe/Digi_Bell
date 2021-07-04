@@ -2,34 +2,27 @@ package com.example.digi_bell
 
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.util.SparseBooleanArray
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.budiyev.android.codescanner.AutoFocusMode
-import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.CodeScannerView
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
-import com.budiyev.android.codescanner.ScanMode
+import com.budiyev.android.codescanner.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_home_screen1.*
+import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.activity_receiver.*
+import kotlinx.android.synthetic.main.activity_receiver.show
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 
@@ -38,15 +31,16 @@ class Receiver : AppCompatActivity() {
     private lateinit var dbRef1: DatabaseReference
     private lateinit var dbRef2: DatabaseReference
     private lateinit var dbRef3: DatabaseReference
+    private lateinit var dbRef4: DatabaseReference
     private var firebaseUserID: String = ""
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var runnable:Runnable
     private var handler: Handler = Handler()
     private var pause:Boolean = false
-    lateinit var codescanner: CodeScanner
     private var name: String? = ""
     private var name2: String? = ""
     private var abdt: ActionBarDrawerToggle? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -54,46 +48,84 @@ class Receiver : AppCompatActivity() {
         setContentView(R.layout.activity_receiver)
         auth = Firebase.auth
         firebaseUserID = auth.currentUser!!.uid
+        dbRef4 = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+
         val list = arrayListOf<String>()
         val list2 = arrayListOf<String>()
+       // val list3 = arrayListOf<String>()
+      //  val list4 = arrayListOf<String>()
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list)
         val adapter2 = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list2)
+      //  val adapter3 = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list3)
+     //   val adapter4 = ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list4)
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
-            PackageManager.PERMISSION_DENIED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.CAMERA),
-                123
-            )
-        } else {
-            startScanning()
-
-        }
 
 
 //        bcmSender.setOnClickListener {
 //            val bcmS = Intent(this, ScanReceive::class.java)
 //            startActivity(bcmS)
 //        }
+        var ino = 1
+        dbRef4.child("INo").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val inoD = snapshot.getValue(Long::class.java)
+                ino = inoD!!.toInt()
+            }
 
-        addId.setOnClickListener {
-            name?.let { it1 -> list2.add(it1) }
-            list.add(senderIDx.text.toString())
-            lvSenderId.adapter = adapter
-            lvSenderName.adapter = adapter2
-            adapter.notifyDataSetChanged()
-            adapter2.notifyDataSetChanged()
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        show.setOnClickListener {
+            dbRef4.child("ListId").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (ds: DataSnapshot in snapshot.children){
+                        val data = ds.getValue(String::class.java)
+                        if (data != null) {
+                            list.add(data)
+                            lvSenderId.adapter = adapter
+                            adapter.notifyDataSetChanged()
+                            dataRef(list)
+                        }
+
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+            dbRef4.child("ListName").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (ds: DataSnapshot in snapshot.children){
+                        val data = ds.getValue(String::class.java)
+                        if (data != null) {
+                            list2.add(data)
+                            lvSenderName.adapter = adapter2
+                            adapter2.notifyDataSetChanged()
+                        }
+
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
             senderIDx.text.clear()
-            dataRef(list)
-        }
 
+        }
 
         lvSenderName.setOnItemClickListener { _, _, i, _ ->
             Toast.makeText(this, "You Selected the name --> "+ list2[i], Toast.LENGTH_SHORT).show()
-            Toast.makeText(this, "You Selected the id --> "+ list[i], Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "You Selected the id --> "+ list[i], Toast.LENGTH_SHORT).show()
         }
         deleteId.setOnClickListener {
             val position: SparseBooleanArray = lvSenderName.checkedItemPositions
@@ -102,11 +134,22 @@ class Receiver : AppCompatActivity() {
             val position2: SparseBooleanArray = lvSenderName.checkedItemPositions
             val count2 = lvSenderId.count
             var item2 = count2 - 1
+//            val position3: SparseBooleanArray = lvSenderName.checkedItemPositions
+//            val count3 = lvnum.count
+//            var item3 = count3 - 1
             while (item >= 0 && item2 >= 0) {
                 if (position.get(item) && position2.get(item2))
                 {
-                    adapter.remove(list[item2])
-                    adapter2.remove(list2[item])
+
+                    var ix:Int = item
+                    ix++
+                    Log.e("ITEM", "n$ix")
+                    dbRef4.child("ListName").child("n$ix").removeValue()
+                    dbRef4.child("ListId").child("n$ix").removeValue()
+                    ino--
+                    dbRef4.child("INo").setValue(ino)
+                    adapter.clear()
+                    adapter2.clear()
                 }
                 item--
                 item2--
@@ -115,6 +158,7 @@ class Receiver : AppCompatActivity() {
             adapter2.notifyDataSetChanged()
             position2.clear()
             adapter.notifyDataSetChanged()
+            dataRef(list)
         }
 
        audioON.setOnCheckedChangeListener{ _, isChecked ->
@@ -122,11 +166,11 @@ class Receiver : AppCompatActivity() {
                if(pause){
                    mediaPlayer.seekTo(mediaPlayer.currentPosition)
                    mediaPlayer.start()
-                   pause = false
+              pause = false
 
                }else{
 
-                   mediaPlayer = MediaPlayer.create(applicationContext,R.raw.testtt)
+                   mediaPlayer = MediaPlayer.create(applicationContext,R.raw.test)
                    mediaPlayer.start()
 
 
@@ -212,6 +256,14 @@ class Receiver : AppCompatActivity() {
                     overridePendingTransition(0, 0)
                     return@setNavigationItemSelectedListener true
                 }
+
+                R.id.scanner -> {
+                    val gotoScRcv = Intent(this, Scanner::class.java)
+                    startActivity(gotoScRcv)
+                    overridePendingTransition(0, 0)
+                    return@setNavigationItemSelectedListener true
+                }
+
                 R.id.logout1 -> {
                     FirebaseAuth.getInstance().signOut()
                     val log = Intent(this, Login::class.java)
@@ -235,7 +287,7 @@ class Receiver : AppCompatActivity() {
 
       list.forEachIndexed { index, _ ->
           dbRef2 = FirebaseDatabase.getInstance().reference.child("Users").child(list[index])
-          dbRef3 = FirebaseDatabase.getInstance().reference.child("Users").child(list[index])
+          dbRef3 = FirebaseDatabase.getInstance().reference.child("Users")
           dbRef2.child("Help").addValueEventListener(object : ValueEventListener{
               override fun onDataChange(snapshot: DataSnapshot) {
                   val help = snapshot.getValue(String::class.java)
@@ -243,20 +295,27 @@ class Receiver : AppCompatActivity() {
                   val h = "1234"
                   if(helpReceived.text.toString() == h){
                       Log.e("ON", "${helpReceived.text} + $h")
-                      dbRef3.child("Name").addValueEventListener(object : ValueEventListener{
+                      try{
+                          val inx = list[index]
+                          dbRef3.child(inx).child("Name").addValueEventListener(object : ValueEventListener{
                           override fun onDataChange(snapshot: DataSnapshot) {
                               name2 = snapshot.getValue(String::class.java)
                               Toast.makeText(this@Receiver," Call from $name2 incoming ",Toast.LENGTH_SHORT).show()
+                              audioON.isVisible= true
+                              audioON.isChecked = true
                           }
 
                           override fun onCancelled(error: DatabaseError) {
                               TODO("Not yet implemented")
                           }
 
-                      })
+                      })}catch (e: IndexOutOfBoundsException){
+                         Log.e("Del", "Deleted user calling")
+                          audioON.isVisible = false
+                          audioON.isChecked = false
 
-                      audioON.isVisible= true
-                      audioON.isChecked = true
+                      }
+
                   }
                   else{
                       audioON.isVisible = false
@@ -288,81 +347,6 @@ class Receiver : AppCompatActivity() {
         handler.postDelayed(runnable, 1000)
     }
 
-    private fun startScanning() {
-
-        val scannerView: CodeScannerView = findViewById(R.id.scanner_view_rec)
-        codescanner = CodeScanner(this, scannerView)
-        codescanner.camera = CodeScanner.CAMERA_BACK
-        codescanner.formats = CodeScanner.ALL_FORMATS
-        codescanner.autoFocusMode = AutoFocusMode.SAFE
-        codescanner.scanMode = ScanMode.SINGLE
-        codescanner.isAutoFocusEnabled = true
-        codescanner.isFlashEnabled = false
-        codescanner.decodeCallback = DecodeCallback {
-            runOnUiThread {
-
-                Toast.makeText(this, "Scan Completed click on Add to add in the list", Toast.LENGTH_SHORT).show()
-                senderIDx.setText(it.text)
-                dbRef1 = FirebaseDatabase.getInstance().reference.child("Users").child(senderIDx.text.toString())
-                dbRef1.child("Name").addValueEventListener(object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        name = snapshot.getValue(String::class.java)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                })
-            }
-        }
-        codescanner.errorCallback = ErrorCallback {
-            runOnUiThread {
-                Toast.makeText(
-                    this,
-                    "Camera Initialization Error: ${it.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        }
-        scannerView.setOnClickListener {
-            codescanner.startPreview()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 123) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show()
-                startScanning()
-            } else {
-                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (::codescanner.isInitialized)
-        {
-            codescanner?.startPreview()
-        }
-    }
-
-    override fun onPanelClosed(featureId: Int, menu: Menu) {
-        if (::codescanner.isInitialized)
-        {
-            codescanner?.releaseResources()
-        }
-
-        super.onPause()
-    }
 }
 val MediaPlayer.seconds:Int
     get() {
