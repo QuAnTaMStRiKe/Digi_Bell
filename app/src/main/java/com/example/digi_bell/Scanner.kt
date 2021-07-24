@@ -54,7 +54,9 @@ class Scanner : AppCompatActivity() {
         dbRef4.child("INo").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val inoD = snapshot.getValue(Long::class.java)
-                ino = inoD!!.toInt()
+                if (inoD != null) {
+                    ino = inoD.toInt()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
