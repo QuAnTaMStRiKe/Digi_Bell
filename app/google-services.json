@@ -47,7 +47,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:917107686707:android:54de1714a7482d36979246",
         "android_client_info": {
-          "package_name": "com.example.digi_bell"
+          "package_name": "com.jsr.digi_bell"
         }
       },
       "oauth_client": [
